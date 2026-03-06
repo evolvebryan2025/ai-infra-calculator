@@ -36,1053 +36,1581 @@
     color: var(--text);
     min-height: 100vh;
     line-height: 1.6;
+    overflow-x: hidden;
   }
 
-  /* Header */
   .header {
     text-align: center;
-    padding: 48px 24px 32px;
+    padding: 36px 24px 24px;
     border-bottom: 1px solid var(--border);
     background: linear-gradient(180deg, rgba(108,92,231,0.08) 0%, transparent 100%);
   }
   .header-badge {
-    display: inline-block;
-    padding: 6px 16px;
-    background: rgba(108,92,231,0.15);
-    border: 1px solid rgba(108,92,231,0.3);
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--accent-2);
-    margin-bottom: 16px;
+    display: inline-block; padding: 6px 16px; background: rgba(108,92,231,0.15);
+    border: 1px solid rgba(108,92,231,0.3); border-radius: 20px; font-size: 11px;
+    font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--accent-2); margin-bottom: 12px; cursor: default; user-select: none;
   }
   .header h1 {
-    font-size: 32px;
-    font-weight: 800;
-    margin-bottom: 8px;
+    font-size: 30px; font-weight: 800; margin-bottom: 6px;
     background: linear-gradient(135deg, #fff 0%, var(--accent-2) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
-  .header p {
-    color: var(--text-dim);
-    font-size: 15px;
-    max-width: 500px;
-    margin: 0 auto;
-  }
+  .header p { color: var(--text-dim); font-size: 14px; max-width: 500px; margin: 0 auto; }
 
-  /* Layout */
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 32px 24px 64px;
+  .tab-nav {
+    display: flex; justify-content: center; gap: 4px; padding: 16px 24px 0;
+    border-bottom: 1px solid var(--border); background: var(--bg);
+    position: sticky; top: 0; z-index: 100;
   }
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 32px;
-    align-items: start;
+  .tab-btn {
+    padding: 12px 24px; border: none; background: transparent; color: var(--text-dim);
+    font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit;
+    border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap;
   }
-  @media (max-width: 900px) {
-    .grid { grid-template-columns: 1fr; }
-  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--accent-2); border-bottom-color: var(--accent); }
 
-  /* Sections */
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 28px 24px 64px; }
+  .grid { display: grid; grid-template-columns: 1fr 380px; gap: 28px; align-items: start; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
   .section {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    margin-bottom: 24px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 24px; margin-bottom: 20px;
   }
   .section-title {
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    color: var(--text-dim);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px;
+    color: var(--text-dim); margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
   }
   .section-title .icon {
-    width: 20px;
-    height: 20px;
-    background: var(--accent);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
+    width: 20px; height: 20px; background: var(--accent); border-radius: 6px;
+    display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0;
   }
 
-  /* Client Type Selector */
-  .client-types {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-  }
+  .client-types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
   .client-type {
-    background: var(--surface-2);
-    border: 2px solid var(--border);
-    border-radius: 12px;
-    padding: 20px 16px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    position: relative;
+    background: var(--surface-2); border: 2px solid var(--border); border-radius: 12px;
+    padding: 18px 14px; text-align: center; cursor: pointer; transition: all 0.25s ease;
   }
-  .client-type:hover {
-    border-color: var(--text-muted);
-    background: var(--surface-3);
-  }
-  .client-type.active {
-    border-color: var(--accent);
-    background: rgba(108,92,231,0.08);
-    box-shadow: 0 0 20px var(--accent-glow);
-  }
-  .client-type .ct-icon {
-    font-size: 28px;
-    margin-bottom: 8px;
-  }
-  .client-type .ct-label {
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-  .client-type .ct-desc {
-    font-size: 11px;
-    color: var(--text-dim);
-    line-height: 1.4;
-  }
-  .client-type .ct-discount {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 3px 10px;
-    border-radius: 10px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-  }
+  .client-type:hover { border-color: var(--text-muted); background: var(--surface-3); }
+  .client-type.active { border-color: var(--accent); background: rgba(108,92,231,0.08); box-shadow: 0 0 20px var(--accent-glow); }
+  .client-type .ct-icon { font-size: 24px; margin-bottom: 6px; }
+  .client-type .ct-label { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+  .client-type .ct-desc { font-size: 11px; color: var(--text-dim); }
+  .client-type .ct-discount { display: inline-block; margin-top: 6px; padding: 3px 10px; border-radius: 10px; font-size: 10px; font-weight: 700; }
   .ct-discount.new { background: rgba(108,92,231,0.15); color: var(--accent-2); }
   .ct-discount.current { background: var(--green-glow); color: var(--green); }
   .ct-discount.potential { background: var(--gold-glow); color: var(--gold); }
 
-  /* Service Items */
-  .service-list { display: flex; flex-direction: column; gap: 10px; }
-
+  .service-list { display: flex; flex-direction: column; gap: 8px; }
   .service-item {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 14px;
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px 16px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    user-select: none;
+    display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px;
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 14px; cursor: pointer; transition: all 0.2s ease; user-select: none;
   }
   .service-item:hover { border-color: var(--text-muted); }
-  .service-item.selected {
-    border-color: var(--accent);
-    background: rgba(108,92,231,0.06);
-  }
-
+  .service-item.selected { border-color: var(--accent); background: rgba(108,92,231,0.06); }
   .service-check {
-    width: 22px; height: 22px;
-    border: 2px solid var(--border);
-    border-radius: 6px;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s ease;
-    flex-shrink: 0;
+    width: 20px; height: 20px; border: 2px solid var(--border); border-radius: 6px;
+    display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; flex-shrink: 0;
   }
-  .service-item.selected .service-check {
-    background: var(--accent);
-    border-color: var(--accent);
-  }
+  .service-item.selected .service-check { background: var(--accent); border-color: var(--accent); }
   .service-check svg { opacity: 0; transition: opacity 0.15s; }
   .service-item.selected .service-check svg { opacity: 1; }
+  .service-info .service-name { font-size: 13px; font-weight: 600; margin-bottom: 1px; }
+  .service-info .service-desc { font-size: 11px; color: var(--text-dim); }
+  .service-price { font-size: 13px; font-weight: 700; color: var(--accent-2); white-space: nowrap; }
 
-  .service-info .service-name {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 2px;
-  }
-  .service-info .service-desc {
-    font-size: 11px;
-    color: var(--text-dim);
-  }
-  .service-price {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--accent-2);
-    white-space: nowrap;
-  }
-
-  /* Pricing Model Toggle */
-  .pricing-toggle {
-    display: flex;
-    background: var(--surface-2);
-    border-radius: 10px;
-    padding: 4px;
-    margin-bottom: 20px;
-  }
+  .pricing-toggle { display: flex; background: var(--surface-2); border-radius: 10px; padding: 4px; margin-bottom: 18px; }
   .pricing-toggle button {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    background: transparent;
-    color: var(--text-dim);
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: inherit;
+    flex: 1; padding: 10px; border: none; border-radius: 8px; background: transparent;
+    color: var(--text-dim); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit;
   }
-  .pricing-toggle button.active {
-    background: var(--accent);
-    color: #fff;
-    box-shadow: 0 2px 10px var(--accent-glow);
-  }
+  .pricing-toggle button.active { background: var(--accent); color: #fff; box-shadow: 0 2px 10px var(--accent-glow); }
 
-  /* Business Size */
-  .size-options {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-  }
+  .size-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
   .size-option {
-    background: var(--surface-2);
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    padding: 14px 12px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s;
+    background: var(--surface-2); border: 2px solid var(--border); border-radius: 10px;
+    padding: 12px; text-align: center; cursor: pointer; transition: all 0.2s;
   }
   .size-option:hover { border-color: var(--text-muted); }
-  .size-option.active {
-    border-color: var(--accent);
-    background: rgba(108,92,231,0.08);
-  }
-  .size-option .so-label {
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 2px;
-  }
-  .size-option .so-desc {
-    font-size: 10px;
-    color: var(--text-dim);
-  }
+  .size-option.active { border-color: var(--accent); background: rgba(108,92,231,0.08); }
+  .size-option .so-label { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+  .size-option .so-desc { font-size: 10px; color: var(--text-dim); }
 
-  /* Custom Add-ons */
-  .addon-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-  }
+  .addon-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
   .addon-row:last-child { border-bottom: none; }
   .addon-label { font-size: 13px; font-weight: 500; }
   .addon-price { font-size: 12px; color: var(--text-dim); margin-left: auto; margin-right: 12px; }
   .addon-toggle {
-    width: 42px; height: 24px;
-    background: var(--surface-3);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    cursor: pointer;
-    position: relative;
-    transition: all 0.25s;
-    flex-shrink: 0;
+    width: 42px; height: 24px; background: var(--surface-3); border: 1px solid var(--border);
+    border-radius: 12px; cursor: pointer; position: relative; transition: all 0.25s; flex-shrink: 0;
   }
-  .addon-toggle.on {
-    background: var(--accent);
-    border-color: var(--accent);
-  }
+  .addon-toggle.on { background: var(--accent); border-color: var(--accent); }
   .addon-toggle::after {
-    content: '';
-    position: absolute;
-    top: 3px; left: 3px;
-    width: 16px; height: 16px;
-    background: #fff;
-    border-radius: 50%;
-    transition: transform 0.25s;
+    content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px;
+    background: #fff; border-radius: 50%; transition: transform 0.25s;
   }
   .addon-toggle.on::after { transform: translateX(18px); }
 
-  /* Quote Panel (Sticky Sidebar) */
-  .quote-panel {
-    position: sticky;
-    top: 24px;
+  .input-group { margin-bottom: 14px; }
+  .input-group label {
+    display: block; font-size: 12px; font-weight: 600; color: var(--text-dim);
+    margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.8px;
   }
-  .quote-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
+  .input-group input, .input-group select {
+    width: 100%; padding: 11px 14px; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 10px; color: var(--text); font-size: 14px; font-family: inherit; outline: none; transition: border-color 0.2s;
   }
-  .quote-header {
-    background: linear-gradient(135deg, var(--accent) 0%, #8b7cf0 100%);
-    padding: 24px;
-    text-align: center;
+  .input-group input:focus, .input-group select:focus { border-color: var(--accent); }
+  .input-group input::placeholder { color: var(--text-muted); }
+  .input-group select {
+    cursor: pointer; appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238888a0' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
   }
-  .quote-header h3 {
-    font-size: 14px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    opacity: 0.9;
-    margin-bottom: 8px;
-  }
-  .quote-total {
-    font-size: 42px;
-    font-weight: 900;
-    letter-spacing: -1px;
-  }
-  .quote-total .currency { font-size: 24px; vertical-align: top; margin-right: 2px; }
-  .quote-period {
-    font-size: 13px;
-    opacity: 0.7;
-    margin-top: 4px;
+  .input-group select option { background: var(--surface); color: var(--text); }
+
+  .complexity-info {
+    display: flex; align-items: center; gap: 8px; padding: 10px 14px;
+    background: rgba(108,92,231,0.08); border: 1px solid rgba(108,92,231,0.15);
+    border-radius: 8px; margin-top: 10px; font-size: 12px; color: var(--accent-2);
   }
 
-  .quote-body { padding: 24px; }
-
-  .quote-line {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-    font-size: 13px;
-  }
+  .quote-panel { position: sticky; top: 80px; }
+  .quote-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .quote-header { background: linear-gradient(135deg, var(--accent) 0%, #8b7cf0 100%); padding: 20px; text-align: center; }
+  .quote-header h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; margin-bottom: 6px; }
+  .quote-total { font-size: 38px; font-weight: 900; letter-spacing: -1px; }
+  .quote-total .currency { font-size: 22px; vertical-align: top; margin-right: 2px; }
+  .quote-period { font-size: 13px; opacity: 0.7; margin-top: 3px; }
+  .quote-body { padding: 20px; }
+  .quote-line { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; font-size: 13px; }
   .quote-line .ql-label { color: var(--text-dim); }
   .quote-line .ql-value { font-weight: 600; }
+  .quote-divider { height: 1px; background: var(--border); margin: 10px 0; }
 
-  .quote-divider {
-    height: 1px;
-    background: var(--border);
-    margin: 12px 0;
-  }
+  .quote-savings { background: var(--green-glow); border: 1px solid rgba(0,184,148,0.2); border-radius: 10px; padding: 12px; text-align: center; margin-top: 14px; }
+  .quote-savings .qs-label { font-size: 11px; color: var(--green); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+  .quote-savings .qs-value { font-size: 18px; font-weight: 800; color: var(--green); }
 
-  .quote-savings {
-    background: var(--green-glow);
-    border: 1px solid rgba(0,184,148,0.2);
-    border-radius: 10px;
-    padding: 14px;
-    text-align: center;
-    margin-top: 16px;
-  }
-  .quote-savings .qs-label {
-    font-size: 11px;
-    color: var(--green);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 4px;
-  }
-  .quote-savings .qs-value {
-    font-size: 20px;
-    font-weight: 800;
-    color: var(--green);
-  }
+  .setup-row { display: flex; justify-content: space-between; align-items: center; background: var(--surface-2); border-radius: 10px; padding: 12px 14px; margin-top: 14px; }
+  .setup-row .sr-label { font-size: 13px; font-weight: 600; }
+  .setup-row .sr-value { font-size: 15px; font-weight: 800; color: var(--orange); }
 
-  /* Setup Fee */
-  .setup-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--surface-2);
-    border-radius: 10px;
-    padding: 14px 16px;
-    margin-top: 16px;
-  }
-  .setup-row .sr-label {
-    font-size: 13px;
-    font-weight: 600;
-  }
-  .setup-row .sr-value {
-    font-size: 16px;
-    font-weight: 800;
-    color: var(--orange);
-  }
+  .annual-box { background: var(--surface-2); border-radius: 10px; padding: 12px 14px; margin-top: 10px; text-align: center; }
+  .annual-box .ab-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+  .annual-box .ab-value { font-size: 20px; font-weight: 800; color: var(--accent-2); }
 
-  /* Buttons */
-  .btn-generate {
-    width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, var(--accent) 0%, #8b7cf0 100%);
-    border: none;
-    border-radius: 12px;
-    color: #fff;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: all 0.25s;
-    font-family: inherit;
-    letter-spacing: 0.3px;
-  }
-  .btn-generate:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 24px var(--accent-glow);
-  }
-
-  .btn-copy {
-    width: 100%;
-    padding: 12px;
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--text-dim);
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: all 0.2s;
-    font-family: inherit;
-  }
-  .btn-copy:hover { border-color: var(--accent); color: var(--text); }
-
-  /* Selected Services List in Quote */
-  .quote-services { margin-top: 8px; }
-  .qs-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 6px 0;
-    font-size: 12px;
-    color: var(--text-dim);
-    border-bottom: 1px solid rgba(42,42,58,0.5);
-  }
+  .quote-services { margin-top: 6px; }
+  .qs-item { display: flex; justify-content: space-between; padding: 5px 0; font-size: 12px; color: var(--text-dim); border-bottom: 1px solid rgba(42,42,58,0.5); }
   .qs-item:last-child { border-bottom: none; }
   .qs-item .qs-name { flex: 1; }
   .qs-item .qs-price { font-weight: 600; color: var(--text); }
 
-  /* Client Name Input */
-  .input-group { margin-bottom: 16px; }
-  .input-group label {
-    display: block;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text-dim);
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-  }
-  .input-group input, .input-group select {
-    width: 100%;
-    padding: 12px 14px;
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--text);
-    font-size: 14px;
-    font-family: inherit;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .input-group input:focus, .input-group select:focus {
-    border-color: var(--accent);
-  }
-  .input-group input::placeholder { color: var(--text-muted); }
+  .empty-state { text-align: center; padding: 20px; color: var(--text-muted); font-size: 13px; }
 
-  /* Industry Select */
-  .input-group select {
-    cursor: pointer;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238888a0' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    padding-right: 36px;
+  .btn-primary {
+    width: 100%; padding: 14px; background: linear-gradient(135deg, var(--accent) 0%, #8b7cf0 100%);
+    border: none; border-radius: 12px; color: #fff; font-size: 14px; font-weight: 700;
+    cursor: pointer; margin-top: 16px; transition: all 0.25s; font-family: inherit;
   }
-  .input-group select option {
-    background: var(--surface);
-    color: var(--text);
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px var(--accent-glow); }
+  .btn-secondary {
+    width: 100%; padding: 11px; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 10px; color: var(--text-dim); font-size: 13px; font-weight: 600;
+    cursor: pointer; margin-top: 8px; transition: all 0.2s; font-family: inherit;
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--text); }
+
+  .slider-group { margin-bottom: 16px; }
+  .slider-group label {
+    display: flex; justify-content: space-between; font-size: 12px; font-weight: 600;
+    color: var(--text-dim); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.8px;
+  }
+  .slider-group label span { color: var(--accent-2); font-size: 14px; }
+  input[type="range"] { width: 100%; -webkit-appearance: none; height: 6px; border-radius: 3px; background: var(--surface-3); outline: none; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); cursor: pointer; box-shadow: 0 0 8px var(--accent-glow); }
+  input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); cursor: pointer; border: none; }
+
+  .mgmt-breakdown { background: var(--surface-2); border-radius: 10px; padding: 14px; margin-top: 12px; }
+  .mgmt-line { display: flex; justify-content: space-between; padding: 4px 0; font-size: 12px; }
+  .mgmt-line .ml-label { color: var(--text-dim); }
+  .mgmt-line .ml-value { font-weight: 600; }
+  .mgmt-line.total { border-top: 1px solid var(--border); margin-top: 6px; padding-top: 8px; font-size: 14px; }
+  .mgmt-line.total .ml-value { color: var(--accent-2); }
+
+  .roi-result {
+    background: linear-gradient(135deg, rgba(0,184,148,0.1), rgba(108,92,231,0.1));
+    border: 1px solid rgba(0,184,148,0.2); border-radius: 14px; padding: 24px; text-align: center; margin-top: 20px;
+  }
+  .roi-big { font-size: 48px; font-weight: 900; color: var(--green); }
+  .roi-label { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  .roi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px; }
+  .roi-stat { background: var(--surface-2); border-radius: 10px; padding: 14px; text-align: center; }
+  .roi-stat .rs-value { font-size: 22px; font-weight: 800; color: var(--text); }
+  .roi-stat .rs-label { font-size: 11px; color: var(--text-dim); margin-top: 3px; }
+
+  .compare-table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 16px; }
+  .compare-table th, .compare-table td { padding: 12px 16px; text-align: left; font-size: 13px; border-bottom: 1px solid var(--border); }
+  .compare-table th { background: var(--surface-2); font-weight: 700; color: var(--text-dim); text-transform: uppercase; font-size: 11px; letter-spacing: 1px; }
+  .compare-table th:first-child { border-radius: 10px 0 0 0; }
+  .compare-table th:last-child { border-radius: 0 10px 0 0; }
+  .compare-table td { background: var(--surface); }
+  .compare-table .highlight { color: var(--green); font-weight: 700; }
+  .compare-table .dimmed { color: var(--red); }
+  .compare-total td { font-weight: 800; font-size: 15px; background: var(--surface-2); border-top: 2px solid var(--accent); }
+
+  .license-card {
+    background: linear-gradient(135deg, rgba(240,192,64,0.08), rgba(108,92,231,0.08));
+    border: 1px solid rgba(240,192,64,0.2); border-radius: 16px; padding: 28px; text-align: center; margin-top: 20px;
+  }
+  .license-price { font-size: 48px; font-weight: 900; color: var(--gold); margin: 12px 0; }
+  .license-price .lp-currency { font-size: 24px; vertical-align: top; }
+  .license-includes { text-align: left; margin-top: 16px; }
+  .license-includes li { padding: 6px 0; font-size: 13px; color: var(--text-dim); list-style: none; display: flex; align-items: center; gap: 8px; }
+  .license-includes li::before { content: '\2713'; color: var(--gold); font-weight: 700; }
+
+  .internal-panel {
+    position: fixed; top: 0; right: -480px; width: 480px; height: 100vh;
+    background: var(--surface); border-left: 1px solid var(--border); z-index: 200;
+    transition: right 0.35s ease; overflow-y: auto; box-shadow: -10px 0 40px rgba(0,0,0,0.5);
+  }
+  .internal-panel.open { right: 0; }
+  .internal-panel-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 24px; border-bottom: 1px solid var(--border);
+    background: linear-gradient(135deg, rgba(224,112,85,0.1), rgba(108,92,231,0.1));
+    position: sticky; top: 0; z-index: 10;
+  }
+  .internal-panel-header h2 { font-size: 16px; font-weight: 800; }
+  .internal-badge {
+    padding: 4px 12px; background: rgba(224,112,85,0.15); border: 1px solid rgba(224,112,85,0.3);
+    border-radius: 12px; font-size: 10px; font-weight: 700; color: var(--red);
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .internal-close { background: none; border: none; color: var(--text-dim); font-size: 24px; cursor: pointer; padding: 4px 8px; }
+  .internal-body { padding: 24px; }
+  .internal-section { background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  .internal-section h3 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin-bottom: 14px; }
+
+  .cost-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; font-size: 13px; }
+  .cost-row .cr-label { color: var(--text-dim); }
+  .cost-row .cr-value { font-weight: 600; }
+  .cost-row.total-row { border-top: 1px solid var(--border); margin-top: 8px; padding-top: 10px; font-size: 15px; }
+  .cost-row.total-row .cr-value { color: var(--accent-2); font-weight: 800; }
+
+  .margin-bar { height: 8px; background: var(--surface-3); border-radius: 4px; overflow: hidden; margin-top: 10px; }
+  .margin-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+  .margin-label { display: flex; justify-content: space-between; font-size: 11px; margin-top: 4px; }
+
+  .panel-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 199; display: none; }
+  .panel-overlay.show { display: block; }
+
+  .advanced-toggle {
+    display: flex; align-items: center; gap: 8px; padding: 10px 14px;
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px;
+    cursor: pointer; font-size: 12px; font-weight: 600; color: var(--text-dim); margin-bottom: 16px; user-select: none;
+  }
+  .advanced-toggle:hover { border-color: var(--accent); }
+  .advanced-fields { display: none; }
+  .advanced-fields.show { display: block; }
+
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+    z-index: 1000; align-items: center; justify-content: center; padding: 24px;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal-content {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 28px;
   }
 
-  /* Complexity Multiplier Info */
-  .complexity-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 14px;
-    background: rgba(108,92,231,0.08);
-    border: 1px solid rgba(108,92,231,0.15);
-    border-radius: 8px;
-    margin-top: 12px;
-    font-size: 12px;
-    color: var(--accent-2);
+  /* Bundle buttons */
+  .bundle-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .bundle-btn {
+    padding: 10px 16px; border: 1px solid var(--border); border-radius: 10px;
+    background: var(--surface-2); color: var(--text-dim); font-size: 12px; font-weight: 600;
+    cursor: pointer; font-family: inherit; transition: all 0.2s;
+  }
+  .bundle-btn:hover { border-color: var(--accent); color: var(--text); }
+  .bundle-btn.active { border-color: var(--accent); background: rgba(108,92,231,0.1); color: var(--accent-2); }
+  .bundle-btn.clear { border-color: var(--border); color: var(--text-muted); }
+  .bundle-btn.clear:hover { border-color: var(--red); color: var(--red); }
+
+  /* Lead input row */
+  .lead-input-row { display: flex; gap: 10px; align-items: center; }
+  .lead-input-row input[type="range"] { flex: 1; }
+  .lead-manual {
+    width: 80px; padding: 6px 10px; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 8px; color: var(--text); font-size: 13px; font-family: inherit;
+    text-align: right; outline: none;
+  }
+  .lead-manual:focus { border-color: var(--accent); }
+
+  /* Voice usage collapsible */
+  .voice-section { margin-top: 16px; }
+  .voice-toggle {
+    display: flex; align-items: center; gap: 8px; padding: 10px 14px;
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px;
+    cursor: pointer; font-size: 12px; font-weight: 600; color: var(--text-dim); user-select: none;
+  }
+  .voice-toggle:hover { border-color: var(--accent); }
+  .voice-fields { display: none; margin-top: 12px; }
+  .voice-fields.show { display: block; }
+  .voice-result {
+    background: var(--surface-2); border-radius: 10px; padding: 14px; margin-top: 12px;
   }
 
-  /* Annual Projection */
-  .annual-box {
-    background: var(--surface-2);
-    border-radius: 10px;
-    padding: 14px 16px;
-    margin-top: 12px;
-    text-align: center;
+  /* Pricing mode indicator */
+  .mode-indicator {
+    display: inline-block; padding: 3px 10px; border-radius: 8px; font-size: 10px;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-left: 8px;
   }
-  .annual-box .ab-label {
-    font-size: 11px;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 4px;
-  }
-  .annual-box .ab-value {
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--accent-2);
-  }
+  .mode-indicator.close { background: rgba(0,184,148,0.15); color: var(--green); }
+  .mode-indicator.margin { background: rgba(240,192,64,0.15); color: var(--gold); }
 
-  /* Empty state */
-  .empty-state {
-    text-align: center;
-    padding: 24px;
-    color: var(--text-muted);
-    font-size: 13px;
+  /* Offer type selector */
+  .offer-type-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .offer-type-card {
+    background: var(--surface-2); border: 2px solid var(--border); border-radius: 12px;
+    padding: 18px 16px; cursor: pointer; transition: all 0.25s ease; text-align: center;
   }
+  .offer-type-card:hover { border-color: var(--text-muted); background: var(--surface-3); }
+  .offer-type-card.active { border-color: var(--accent); background: rgba(108,92,231,0.08); box-shadow: 0 0 20px var(--accent-glow); }
+  .offer-type-card .ot-icon { font-size: 22px; margin-bottom: 6px; }
+  .offer-type-card .ot-label { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+  .offer-type-card .ot-desc { font-size: 11px; color: var(--text-dim); }
+  .offer-type-card .ot-badge {
+    display: inline-block; margin-top: 8px; padding: 3px 10px; border-radius: 10px;
+    font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .ot-badge.rec { background: rgba(0,184,148,0.15); color: var(--green); }
+  .ot-badge.flex { background: rgba(240,192,64,0.15); color: var(--gold); }
+  .flagship-note {
+    padding: 10px 14px; background: rgba(0,184,148,0.08); border: 1px solid rgba(0,184,148,0.15);
+    border-radius: 8px; font-size: 12px; color: var(--green); margin-top: 14px; display: none;
+  }
+  .flagship-note.show { display: block; }
 
-  /* Print styles */
+  /* Pilot toggle */
+  .pilot-row {
+    display: flex; align-items: center; gap: 10px; margin-top: 14px; padding: 12px 14px;
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;
+  }
+  .pilot-row label { font-size: 13px; font-weight: 600; cursor: pointer; flex: 1; }
+  .pilot-row .pilot-desc { font-size: 11px; color: var(--text-dim); display: block; font-weight: 400; }
+  .pilot-check {
+    width: 18px; height: 18px; accent-color: var(--accent); cursor: pointer;
+  }
+  .pilot-badge {
+    display: none; padding: 3px 10px; border-radius: 8px; font-size: 10px; font-weight: 700;
+    background: rgba(224,112,85,0.15); color: var(--red); text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .pilot-badge.show { display: inline-block; }
+
+  /* Sales Questions Tab */
+  .q-phase { margin-bottom: 28px; }
+  .q-phase:last-child { margin-bottom: 0; }
+  .q-phase-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    padding-bottom: 12px; border-bottom: 1px solid var(--border);
+  }
+  .q-phase-icon {
+    width: 36px; height: 36px; border-radius: 10px; display: flex;
+    align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;
+  }
+  .q-phase-icon.discovery { background: rgba(108,92,231,0.15); color: var(--accent-2); }
+  .q-phase-icon.pitch { background: rgba(0,184,148,0.15); color: var(--green); }
+  .q-phase-icon.proposal { background: rgba(240,192,64,0.15); color: var(--gold); }
+  .q-phase-title { font-size: 16px; font-weight: 700; }
+  .q-phase-subtitle { font-size: 12px; color: var(--text-dim); }
+  .q-category { margin-bottom: 18px; }
+  .q-category:last-child { margin-bottom: 0; }
+  .q-cat-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text-muted); margin-bottom: 8px;
+  }
+  .q-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .q-item {
+    display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px;
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;
+    font-size: 13px; line-height: 1.5; cursor: pointer; transition: all 0.2s; user-select: none;
+  }
+  .q-item:hover { border-color: var(--text-muted); background: var(--surface-3); }
+  .q-item.asked { opacity: 0.45; border-color: var(--border); background: var(--surface-2); }
+  .q-item.asked .q-check { background: var(--green); border-color: var(--green); }
+  .q-item.asked .q-check svg { opacity: 1; }
+  .q-check {
+    width: 18px; height: 18px; border: 2px solid var(--border); border-radius: 5px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    margin-top: 1px; transition: all 0.2s;
+  }
+  .q-check svg { opacity: 0; transition: opacity 0.15s; width: 10px; height: 10px; }
+  .q-tip {
+    display: block; font-size: 11px; color: var(--text-muted); font-style: italic; margin-top: 3px;
+  }
+  .q-reset-btn {
+    padding: 8px 16px; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 8px; color: var(--text-dim); font-size: 12px; font-weight: 600;
+    cursor: pointer; font-family: inherit; transition: all 0.2s;
+  }
+  .q-reset-btn:hover { border-color: var(--red); color: var(--red); }
+
   @media print {
     body { background: #fff; color: #111; }
-    .header { border-bottom: 2px solid #111; }
-    .section, .quote-card { border: 1px solid #ccc; }
-    .btn-generate, .btn-copy { display: none; }
+    .tab-nav, .internal-panel, .panel-overlay, .btn-primary, .btn-secondary { display: none; }
+    .tab-content { display: block !important; }
   }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="header-badge">Internal Pricing Tool</div>
+  <div class="header-badge" id="headerBadge">Internal Pricing Tool</div>
   <h1>AI Sales Infrastructure Calculator</h1>
-  <p>Generate accurate quotes for your OnePrompt system installations based on client type, services, and business size.</p>
+  <p>Generate accurate quotes for your OnePrompt system installations.</p>
 </div>
 
-<div class="container">
-  <div class="grid">
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('pricing', this)">Pricing</button>
+  <button class="tab-btn" onclick="switchTab('roi', this)">ROI Calculator</button>
+  <button class="tab-btn" onclick="switchTab('compare', this)">Build vs Buy</button>
+  <button class="tab-btn" onclick="switchTab('licensing', this)">Licensing</button>
+  <button class="tab-btn" onclick="switchTab('questions', this)">Sales Questions</button>
+</div>
 
-    <!-- LEFT COLUMN: Configuration -->
-    <div class="config-col">
+<!-- TAB 1: PRICING -->
+<div class="tab-content active" id="tab-pricing">
+  <div class="container">
+    <div class="grid">
+      <div class="config-col">
+        <div class="section">
+          <div class="section-title"><div class="icon">1</div> Client Information</div>
+          <div class="input-group">
+            <label>Client / Business Name</label>
+            <input type="text" id="clientName" placeholder="e.g. Apex Dental Clinic">
+          </div>
+          <div class="input-group">
+            <label>Industry</label>
+            <select id="industry">
+              <option value="general">General Business</option>
+              <option value="medical">Medical / Healthcare</option>
+              <option value="dental">Dental</option>
+              <option value="legal">Legal / Law Firm</option>
+              <option value="realestate">Real Estate</option>
+              <option value="automotive">Automotive</option>
+              <option value="homeservices">Home Services / HVAC / Plumbing</option>
+              <option value="fitness">Fitness / Gym / Wellness</option>
+              <option value="restaurant">Restaurant / F&B</option>
+              <option value="ecommerce">E-Commerce</option>
+              <option value="saas">SaaS / Tech</option>
+              <option value="agency">Agency / Consulting</option>
+              <option value="construction">Construction / Contracting</option>
+              <option value="salon">Salon / Beauty</option>
+            </select>
+          </div>
+          <div class="complexity-info" id="industryNote">Standard industry rate — no adjustment applied</div>
+        </div>
 
-      <!-- Client Info -->
-      <div class="section">
-        <div class="section-title"><div class="icon">1</div> Client Information</div>
-        <div class="input-group">
-          <label>Client / Business Name</label>
-          <input type="text" id="clientName" placeholder="e.g. Apex Dental Clinic">
+        <div class="section">
+          <div class="section-title"><div class="icon">2</div> Client Relationship</div>
+          <div class="client-types">
+            <div class="client-type active" data-type="new" onclick="selectClientType(this)">
+              <div class="ct-icon">&#9734;</div>
+              <div class="ct-label">New Client</div>
+              <div class="ct-desc">First-time engagement</div>
+              <div class="ct-discount new">STANDARD RATE</div>
+            </div>
+            <div class="client-type" data-type="current" onclick="selectClientType(this)">
+              <div class="ct-icon">&#9733;</div>
+              <div class="ct-label">Current Client</div>
+              <div class="ct-desc">Existing relationship</div>
+              <div class="ct-discount current">15% LOYALTY</div>
+            </div>
+            <div class="client-type" data-type="potential" onclick="selectClientType(this)">
+              <div class="ct-icon">&#9672;</div>
+              <div class="ct-label">Potential Client</div>
+              <div class="ct-desc">High-value prospect</div>
+              <div class="ct-discount potential">10% INTRO</div>
+            </div>
+          </div>
         </div>
-        <div class="input-group">
-          <label>Industry</label>
-          <select id="industry">
-            <option value="general">General Business</option>
-            <option value="medical">Medical / Healthcare</option>
-            <option value="dental">Dental</option>
-            <option value="legal">Legal / Law Firm</option>
-            <option value="realestate">Real Estate</option>
-            <option value="automotive">Automotive</option>
-            <option value="homeservices">Home Services / HVAC / Plumbing</option>
-            <option value="fitness">Fitness / Gym / Wellness</option>
-            <option value="restaurant">Restaurant / F&B</option>
-            <option value="ecommerce">E-Commerce</option>
-            <option value="saas">SaaS / Tech</option>
-            <option value="agency">Agency / Consulting</option>
-            <option value="construction">Construction / Contracting</option>
-            <option value="salon">Salon / Beauty</option>
-          </select>
+
+        <div class="section">
+          <div class="section-title"><div class="icon">3</div> Business Size</div>
+          <div class="size-options">
+            <div class="size-option active" data-size="small" onclick="selectSize(this)">
+              <div class="so-label">Small</div><div class="so-desc">1-10 employees</div>
+            </div>
+            <div class="size-option" data-size="medium" onclick="selectSize(this)">
+              <div class="so-label">Medium</div><div class="so-desc">11-50 employees</div>
+            </div>
+            <div class="size-option" data-size="large" onclick="selectSize(this)">
+              <div class="so-label">Enterprise</div><div class="so-desc">50+ employees</div>
+            </div>
+          </div>
         </div>
-        <div class="complexity-info" id="industryNote">
-          Industry multiplier will adjust pricing based on complexity
+
+        <!-- Lead Volume (C: extended to 10000 + manual input) -->
+        <div class="section">
+          <div class="section-title"><div class="icon">4</div> Monthly Lead Volume</div>
+          <div class="slider-group">
+            <label>Estimated Leads / Month <span id="leadCountDisplay">100</span></label>
+            <div class="lead-input-row">
+              <input type="range" id="leadVolume" min="10" max="10000" value="100" step="10" oninput="onLeadSliderChange()">
+              <input type="number" class="lead-manual" id="leadsManual" placeholder="Custom" min="1" oninput="onLeadManualChange()">
+            </div>
+          </div>
+          <div class="complexity-info" id="leadMultiNote">Lead volume multiplier: 1.00x</div>
+        </div>
+
+        <!-- Pricing Model + Pricing Mode (A) -->
+        <div class="section">
+          <div class="section-title"><div class="icon">5</div> Pricing Model</div>
+          <div class="pricing-toggle">
+            <button class="active" onclick="setPricingModel('monthly', this)">Monthly</button>
+            <button onclick="setPricingModel('quarterly', this)">Quarterly</button>
+            <button onclick="setPricingModel('annual', this)">Annual (Save 20%)</button>
+          </div>
+          <div class="section-title" style="margin-top:8px;margin-bottom:12px;"><div class="icon">M</div> Pricing Mode</div>
+          <div class="pricing-toggle" id="pricingModeToggle">
+            <button class="active" onclick="setPricingMode('close', this)">Close Rate</button>
+            <button onclick="setPricingMode('margin', this)">Margin</button>
+          </div>
+          <div class="complexity-info" id="pricingModeNote">Close Rate: Lead multiplier capped at 1.20x, applied to management fee only.</div>
+        </div>
+
+        <!-- Offer Type (A) -->
+        <div class="section">
+          <div class="section-title"><div class="icon">&#9733;</div> Offer Type</div>
+          <div class="offer-type-row">
+            <div class="offer-type-card active" data-offer="flagship" onclick="setOfferType('flagship',this)">
+              <div class="ot-icon">&#9889;</div>
+              <div class="ot-label">Flagship Bundle</div>
+              <div class="ot-desc">Instant Lead-to-Job Engine &mdash; $2,500/mo baseline</div>
+              <div class="ot-badge rec">RECOMMENDED</div>
+            </div>
+            <div class="offer-type-card" data-offer="custom" onclick="setOfferType('custom',this)">
+              <div class="ot-icon">&#9881;</div>
+              <div class="ot-label">Custom Build</div>
+              <div class="ot-desc">Pick individual services &amp; addons</div>
+              <div class="ot-badge flex">FLEXIBLE</div>
+            </div>
+          </div>
+          <div class="flagship-note show" id="flagshipNote">Flagship includes 9 core services + Review Automation. Pricing uses $2,500/mo and $4,000 setup baselines, adjusted by multipliers.</div>
+          <!-- Pilot toggle (F) -->
+          <div class="pilot-row" id="pilotRow">
+            <input type="checkbox" class="pilot-check" id="pilotCheck" onchange="togglePilot()">
+            <label for="pilotCheck">Pilot Mode (Close-Rate)<span class="pilot-desc">50% setup + 20% off first month. Allows pricing below baseline floors.</span></label>
+          </div>
+        </div>
+
+        <!-- Custom bundles (only visible in custom mode) -->
+        <div class="section" id="bundleSection" style="display:none;">
+          <div class="section-title"><div class="icon">&#9733;</div> Quick Select Bundles</div>
+          <div class="bundle-row">
+            <button class="bundle-btn" id="bundleStarter" onclick="applyBundle('starter')">Starter: Instant Lead Response</button>
+            <button class="bundle-btn" id="bundleFlagship" onclick="applyBundle('flagship')">Flagship: Lead-to-Job Engine</button>
+            <button class="bundle-btn clear" onclick="clearSelection()">Clear Selection</button>
+          </div>
+        </div>
+
+        <div class="section" id="servicesSection">
+          <div class="section-title"><div class="icon">6</div> Core Services <span class="flagship-note show" id="flagshipServicesNote" style="margin-left:8px;margin-top:0;padding:4px 10px;font-size:10px;">Flagship bundle locked — switch to Custom to modify</span></div>
+          <div class="service-list" id="serviceList"></div>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><div class="icon">7</div> Optional Add-Ons</div>
+          <div id="addonList"></div>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><div class="icon">8</div> Monthly Management Fee</div>
+          <div class="mgmt-breakdown" id="mgmtBreakdown"></div>
+        </div>
+
+        <div class="section">
+          <div class="section-title"><div class="icon">9</div> Software &amp; API Costs (Client Pays)</div>
+          <div id="softwareCosts"></div>
+          <!-- Voice Usage (F) -->
+          <div class="voice-section">
+            <div class="voice-toggle" onclick="toggleVoiceSection()">
+              <span id="voiceToggleIcon">&#9654;</span> Estimated Voice Usage
+            </div>
+            <div class="voice-fields" id="voiceFields">
+              <div class="input-group" style="margin-top:12px;">
+                <label>% of leads that call</label>
+                <input type="number" id="voicePctCall" value="40" min="0" max="100" step="5" oninput="calculate()">
+              </div>
+              <div class="input-group">
+                <label>Avg minutes per call</label>
+                <input type="number" id="voiceAvgMin" value="3" min="1" max="30" step="0.5" oninput="calculate()">
+              </div>
+              <div class="input-group">
+                <label>% calls handled by AI</label>
+                <input type="number" id="voicePctAI" value="30" min="0" max="100" step="5" oninput="calculate()">
+              </div>
+              <div class="input-group">
+                <label>Included voice minutes/month</label>
+                <input type="number" id="voiceIncluded" value="300" min="0" step="50" oninput="calculate()">
+              </div>
+              <div class="input-group">
+                <label>Overage rate per minute ($)</label>
+                <input type="number" id="voiceOverageRate" value="0.20" min="0" max="2" step="0.01" oninput="calculate()">
+              </div>
+              <div class="voice-result" id="voiceResult"></div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Client Type -->
-      <div class="section">
-        <div class="section-title"><div class="icon">2</div> Client Relationship</div>
-        <div class="client-types">
-          <div class="client-type active" data-type="new" onclick="selectClientType(this)">
-            <div class="ct-icon">&#9734;</div>
-            <div class="ct-label">New Client</div>
-            <div class="ct-desc">First-time engagement</div>
-            <div class="ct-discount new">STANDARD RATE</div>
+      <!-- Quote Panel -->
+      <div class="quote-panel">
+        <div class="quote-card">
+          <div class="quote-header">
+            <h3>Estimated Quote <span class="mode-indicator close" id="quoteModeTag">Close Rate</span> <span class="pilot-badge" id="quotePilotBadge">PILOT</span></h3>
+            <div class="quote-total"><span class="currency">$</span><span id="totalPrice">0</span></div>
+            <div class="quote-period" id="quotePeriod">/ month</div>
           </div>
-          <div class="client-type" data-type="current" onclick="selectClientType(this)">
-            <div class="ct-icon">&#9733;</div>
-            <div class="ct-label">Current Client</div>
-            <div class="ct-desc">Existing relationship</div>
-            <div class="ct-discount current">15% LOYALTY DISCOUNT</div>
-          </div>
-          <div class="client-type" data-type="potential" onclick="selectClientType(this)">
-            <div class="ct-icon">&#9672;</div>
-            <div class="ct-label">Potential Client</div>
-            <div class="ct-desc">High-value prospect</div>
-            <div class="ct-discount potential">10% INTRO OFFER</div>
+          <div class="quote-body">
+            <div class="quote-line"><span class="ql-label">Client Type</span><span class="ql-value" id="qClientType">New Client</span></div>
+            <div class="quote-line"><span class="ql-label">Business Size</span><span class="ql-value" id="qBizSize">Small</span></div>
+            <div class="quote-line"><span class="ql-label">Industry</span><span class="ql-value" id="qIndustry">General</span></div>
+            <div class="quote-line"><span class="ql-label">Lead Volume</span><span class="ql-value" id="qLeadVol">100/mo</span></div>
+            <div class="quote-line"><span class="ql-label">Discount</span><span class="ql-value" id="qDiscount" style="color:var(--green)">None</span></div>
+            <div class="quote-divider"></div>
+            <div style="font-size:12px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Selected Services</div>
+            <div class="quote-services" id="quoteServices"><div class="empty-state">No services selected</div></div>
+            <div class="quote-divider"></div>
+            <div class="quote-line"><span class="ql-label">Services Subtotal</span><span class="ql-value" id="qSubtotal">$0/mo</span></div>
+            <div class="quote-line"><span class="ql-label">Management Fee</span><span class="ql-value" id="qMgmtFee">$0/mo</span></div>
+            <div class="quote-line"><span class="ql-label">Est. Voice Usage</span><span class="ql-value" id="qVoiceUsage">$0/mo</span></div>
+            <div class="quote-line"><span class="ql-label">Size Multiplier</span><span class="ql-value" id="qSizeMulti">1.0x</span></div>
+            <div class="quote-line"><span class="ql-label">Industry Multiplier</span><span class="ql-value" id="qIndMulti">1.0x</span></div>
+            <div class="quote-line"><span class="ql-label">Lead Vol Multiplier</span><span class="ql-value" id="qLeadMulti">1.0x</span></div>
+            <div class="quote-divider"></div>
+            <div class="quote-line" style="font-size:15px;">
+              <span class="ql-label" style="color:var(--text);font-weight:700;">Total</span>
+              <span class="ql-value" style="color:var(--accent-2);font-size:18px;" id="qTotal">$0</span>
+            </div>
+            <div class="setup-row"><span class="sr-label">One-Time Setup Fee</span><span class="sr-value" id="qSetup">$0</span></div>
+            <div class="quote-savings" id="savingsBox" style="display:none;">
+              <div class="qs-label">Client Savings</div>
+              <div class="qs-value" id="qSavings">$0</div>
+            </div>
+            <div class="annual-box">
+              <div class="ab-label">Annual Revenue from Client</div>
+              <div class="ab-value" id="qAnnual">$0</div>
+            </div>
+            <button class="btn-primary" onclick="generateQuote()">Generate Client Quote</button>
+            <button class="btn-secondary" onclick="copyQuote()">Copy Quote as Text</button>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
 
-      <!-- Business Size -->
-      <div class="section">
-        <div class="section-title"><div class="icon">3</div> Business Size</div>
-        <div class="size-options">
-          <div class="size-option active" data-size="small" onclick="selectSize(this)">
-            <div class="so-label">Small</div>
-            <div class="so-desc">1-10 employees</div>
-          </div>
-          <div class="size-option" data-size="medium" onclick="selectSize(this)">
-            <div class="so-label">Medium</div>
-            <div class="so-desc">11-50 employees</div>
-          </div>
-          <div class="size-option" data-size="large" onclick="selectSize(this)">
-            <div class="so-label">Enterprise</div>
-            <div class="so-desc">50+ employees</div>
-          </div>
-        </div>
+<!-- TAB 2: ROI -->
+<div class="tab-content" id="tab-roi">
+  <div class="container" style="max-width:800px;">
+    <div class="section">
+      <div class="section-title"><div class="icon">$</div> ROI Projection</div>
+      <p style="font-size:13px;color:var(--text-dim);margin-bottom:18px;">Enter client metrics to project the return on investment from installing AI Sales Infrastructure.</p>
+      <div class="input-group">
+        <label>Industry</label>
+        <select id="roiIndustry" onchange="calcROI()">
+          <option value="general">General Business</option>
+          <option value="homeservices">Home Services</option>
+          <option value="realestate">Real Estate</option>
+          <option value="medical">Medical / Healthcare</option>
+          <option value="dental">Dental</option>
+          <option value="legal">Legal</option>
+          <option value="automotive">Automotive</option>
+          <option value="construction">Construction</option>
+          <option value="salon">Salon / Beauty</option>
+          <option value="fitness">Fitness</option>
+        </select>
       </div>
-
-      <!-- Pricing Model -->
-      <div class="section">
-        <div class="section-title"><div class="icon">4</div> Pricing Model</div>
-        <div class="pricing-toggle">
-          <button class="active" onclick="setPricingModel('monthly', this)">Monthly</button>
-          <button onclick="setPricingModel('quarterly', this)">Quarterly</button>
-          <button onclick="setPricingModel('annual', this)">Annual (Save 20%)</button>
-        </div>
+      <div class="slider-group">
+        <label>Monthly Leads <span id="roiLeadDisplay">100</span></label>
+        <input type="range" id="roiLeads" min="10" max="2000" value="100" step="10" oninput="calcROI()">
       </div>
-
-      <!-- Core Services -->
-      <div class="section">
-        <div class="section-title"><div class="icon">5</div> Core Services — Select What to Install</div>
-        <div class="service-list" id="serviceList"></div>
+      <div class="input-group">
+        <label>Average Deal / Service Value ($)</label>
+        <input type="number" id="roiDealValue" value="2500" min="100" step="100" oninput="calcROI()">
       </div>
-
-      <!-- Add-ons -->
-      <div class="section">
-        <div class="section-title"><div class="icon">6</div> Optional Add-Ons</div>
-        <div id="addonList"></div>
+      <div class="input-group">
+        <label>Current Close Rate (%)</label>
+        <input type="number" id="roiCloseRate" value="10" min="1" max="100" step="1" oninput="calcROI()">
       </div>
+      <div class="advanced-toggle" onclick="toggleAdvancedROI()">
+        <span id="advToggleIcon">&#9654;</span> Advanced Inputs
+      </div>
+      <div class="advanced-fields" id="advancedROI">
+        <div class="input-group"><label>Cost Per Lead ($)</label><input type="number" id="roiCPL" value="50" min="0" step="5" oninput="calcROI()"></div>
+        <div class="input-group"><label>Lifetime Customer Value ($)</label><input type="number" id="roiLTV" value="7500" min="0" step="100" oninput="calcROI()"></div>
+        <div class="input-group"><label>Monthly Churn Rate (%)</label><input type="number" id="roiChurn" value="5" min="0" max="50" step="1" oninput="calcROI()"></div>
+        <div class="input-group"><label>AI Close Rate Improvement (%)</label><input type="number" id="roiImprovement" value="35" min="5" max="200" step="5" oninput="calcROI()"></div>
+      </div>
+    </div>
+    <div class="roi-result">
+      <div class="roi-big" id="roiPercent">0%</div>
+      <div class="roi-label">Projected Return on Investment</div>
+      <div class="roi-grid">
+        <div class="roi-stat"><div class="rs-value" id="roiExtraDeals">0</div><div class="rs-label">Extra Deals / Month</div></div>
+        <div class="roi-stat"><div class="rs-value" id="roiExtraRev">$0</div><div class="rs-label">Additional Revenue / Month</div></div>
+        <div class="roi-stat"><div class="rs-value" id="roiAnnualGain">$0</div><div class="rs-label">Annual Revenue Gain</div></div>
+      </div>
+    </div>
+    <div class="section" style="margin-top:20px;">
+      <div class="section-title"><div class="icon">P</div> Performance Bonus Projection</div>
+      <div class="input-group"><label>Performance Bonus (% of extra revenue)</label><input type="number" id="roiPerfBonus" value="10" min="0" max="50" step="1" oninput="calcROI()"></div>
+      <div class="roi-grid" style="grid-template-columns:repeat(2,1fr);">
+        <div class="roi-stat"><div class="rs-value" id="roiBonusMo">$0</div><div class="rs-label">Monthly Bonus Potential</div></div>
+        <div class="roi-stat"><div class="rs-value" id="roiBonusYr">$0</div><div class="rs-label">Annual Bonus Potential</div></div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- TAB 3: BUILD VS BUY -->
+<div class="tab-content" id="tab-compare">
+  <div class="container" style="max-width:900px;">
+    <div class="section">
+      <div class="section-title"><div class="icon">&#8596;</div> Build In-House vs Use Our System</div>
+      <p style="font-size:13px;color:var(--text-dim);margin-bottom:18px;">Compare the total cost of building AI infrastructure from scratch vs. using our managed system.</p>
+      <table class="compare-table">
+        <thead><tr><th>Component</th><th>Build In-House</th><th>Our System</th></tr></thead>
+        <tbody id="compareBody"></tbody>
+        <tfoot>
+          <tr class="compare-total"><td><strong>Monthly Total</strong></td><td id="compareInHouse">$0/mo</td><td class="highlight" id="compareOurs">$0/mo</td></tr>
+          <tr class="compare-total"><td><strong>Setup / Build Cost</strong></td><td class="dimmed" id="compareSetupInHouse">$0</td><td class="highlight" id="compareSetupOurs">$0</td></tr>
+          <tr class="compare-total"><td><strong>Year 1 Total Cost</strong></td><td class="dimmed" id="compareY1InHouse">$0</td><td class="highlight" id="compareY1Ours">$0</td></tr>
+        </tfoot>
+      </table>
+      <div class="quote-savings" style="margin-top:20px;">
+        <div class="qs-label">Year 1 Savings With Our System</div>
+        <div class="qs-value" id="compareSavings">$0</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 4: LICENSING -->
+<div class="tab-content" id="tab-licensing">
+  <div class="container" style="max-width:800px;">
+    <div class="section">
+      <div class="section-title"><div class="icon">&#9733;</div> White-Label Licensing</div>
+      <p style="font-size:13px;color:var(--text-dim);margin-bottom:18px;">One-time licensing fee for clients who want to own and white-label the entire AI Sales Infrastructure under their brand.</p>
+      <div class="slider-group">
+        <label>License Price <span id="licensePriceDisplay">$30,000</span></label>
+        <input type="range" id="licensePrice" min="25000" max="40000" value="30000" step="1000" oninput="calcLicense()">
+      </div>
+      <div class="input-group"><label>Included Support (months)</label><input type="number" id="licenseSupportMonths" value="3" min="0" max="12" step="1" oninput="calcLicense()"></div>
+    </div>
+    <div class="license-card">
+      <div style="font-size:12px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;">One-Time License Fee</div>
+      <div class="license-price"><span class="lp-currency">$</span><span id="licenseTotal">30,000</span></div>
+      <div style="font-size:13px;color:var(--text-dim);">Lifetime access — white-labeled under their brand</div>
+      <ul class="license-includes">
+        <li>Complete AI Sales Infrastructure</li>
+        <li>OnePrompt Control System</li>
+        <li>All AI Agents (Voice, SMS, Chat, Follow-up)</li>
+        <li>CRM Pipeline &amp; Analytics</li>
+        <li>Knowledge Base &amp; Training Data</li>
+        <li>Full source access &amp; white-labeling</li>
+        <li id="licenseSupportLine">3 months included support &amp; optimization</li>
+        <li>Deployment documentation &amp; SOPs</li>
+      </ul>
+    </div>
+    <div class="section" style="margin-top:20px;">
+      <div class="section-title"><div class="icon">$</div> Licensing vs Monthly Comparison</div>
+      <div class="roi-grid" style="grid-template-columns:repeat(2,1fr);">
+        <div class="roi-stat"><div class="rs-value" id="licBreakevenMo">0</div><div class="rs-label">Months to Breakeven (vs Monthly)</div></div>
+        <div class="roi-stat"><div class="rs-value" id="licYr2Savings">$0</div><div class="rs-label">Year 2 Savings for Client</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 5: SALES QUESTIONS -->
+<div class="tab-content" id="tab-questions">
+  <div class="container" style="max-width:860px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <div>
+        <h2 style="font-size:20px;font-weight:800;">Sales Call Question Bank</h2>
+        <p style="font-size:13px;color:var(--text-dim);margin-top:4px;">Click questions to mark them as asked. Use these to guide your conversations and uncover the right solution for each client.</p>
+      </div>
+      <button class="q-reset-btn" onclick="resetQuestions()">Reset All</button>
     </div>
 
-    <!-- RIGHT COLUMN: Quote -->
-    <div class="quote-panel">
-      <div class="quote-card">
-        <div class="quote-header">
-          <h3>Estimated Quote</h3>
-          <div class="quote-total">
-            <span class="currency">$</span><span id="totalPrice">0</span>
+    <!-- DISCOVERY CALLS -->
+    <div class="section">
+      <div class="q-phase">
+        <div class="q-phase-header">
+          <div class="q-phase-icon discovery">&#128269;</div>
+          <div>
+            <div class="q-phase-title">Discovery Call</div>
+            <div class="q-phase-subtitle">First contact — understand their world before pitching anything</div>
           </div>
-          <div class="quote-period" id="quotePeriod">/ month</div>
         </div>
-        <div class="quote-body">
 
-          <div class="quote-line">
-            <span class="ql-label">Client Type</span>
-            <span class="ql-value" id="qClientType">New Client</span>
-          </div>
-          <div class="quote-line">
-            <span class="ql-label">Business Size</span>
-            <span class="ql-value" id="qBizSize">Small</span>
-          </div>
-          <div class="quote-line">
-            <span class="ql-label">Industry</span>
-            <span class="ql-value" id="qIndustry">General</span>
-          </div>
-          <div class="quote-line">
-            <span class="ql-label">Discount Applied</span>
-            <span class="ql-value" id="qDiscount" style="color:var(--green)">0%</span>
-          </div>
+        <div class="q-category">
+          <div class="q-cat-label">Pain Points &amp; Current Situation</div>
+          <ul class="q-list">
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>What happens right now when a new lead comes in — who responds, and how fast?<span class="q-tip">Opens the "slow response" pain point naturally</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>How many leads do you get per month right now, roughly?<span class="q-tip">Feeds directly into the pricing calculator lead volume</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>What's your biggest bottleneck between getting a lead and closing a deal?</div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Do you have someone handling follow-ups, or do leads just go cold after the first touch?</div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>What happens after hours or on weekends — are calls and messages still being answered?</div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Have you ever tried to estimate how much revenue you're losing from missed or slow responses?</div></li>
+          </ul>
+        </div>
 
-          <div class="quote-divider"></div>
+        <div class="q-category">
+          <div class="q-cat-label">Business Model &amp; Scale</div>
+          <ul class="q-list">
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>How many people are on your team right now?<span class="q-tip">Determines size multiplier (small/medium/enterprise)</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>What's your average deal or service value?<span class="q-tip">Feeds into ROI calculator</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>What tools or software are you currently using — CRM, booking, texting, anything like that?</div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Do you have an existing database of past leads or customers that aren't being worked?<span class="q-tip">Opens the door for Database Reactivation service</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Where do most of your leads come from — ads, website, referrals, social?</div></li>
+          </ul>
+        </div>
 
-          <div style="font-size:12px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Selected Services</div>
-          <div class="quote-services" id="quoteServices">
-            <div class="empty-state">No services selected</div>
-          </div>
-
-          <div class="quote-divider"></div>
-
-          <div class="quote-line">
-            <span class="ql-label">Subtotal</span>
-            <span class="ql-value" id="qSubtotal">$0</span>
-          </div>
-          <div class="quote-line">
-            <span class="ql-label">Size Multiplier</span>
-            <span class="ql-value" id="qSizeMulti">1.0x</span>
-          </div>
-          <div class="quote-line">
-            <span class="ql-label">Industry Multiplier</span>
-            <span class="ql-value" id="qIndMulti">1.0x</span>
-          </div>
-          <div class="quote-line" style="font-size:15px;">
-            <span class="ql-label" style="color:var(--text);font-weight:700;">Total</span>
-            <span class="ql-value" style="color:var(--accent-2);font-size:18px;" id="qTotal">$0</span>
-          </div>
-
-          <div class="setup-row">
-            <span class="sr-label">One-Time Setup Fee</span>
-            <span class="sr-value" id="qSetup">$0</span>
-          </div>
-
-          <div class="quote-savings" id="savingsBox" style="display:none;">
-            <div class="qs-label">You save the client</div>
-            <div class="qs-value" id="qSavings">$0</div>
-          </div>
-
-          <div class="annual-box">
-            <div class="ab-label">Annual Revenue from Client</div>
-            <div class="ab-value" id="qAnnual">$0</div>
-          </div>
-
-          <button class="btn-generate" onclick="generateQuote()">Generate Client Quote</button>
-          <button class="btn-copy" onclick="copyQuote()">Copy Quote as Text</button>
+        <div class="q-category">
+          <div class="q-cat-label">Goals &amp; Readiness</div>
+          <ul class="q-list">
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>If you could wave a magic wand and fix one thing about your sales process, what would it be?</div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Have you looked into AI or automation before? What was your experience?</div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>What does your timeline look like — are you looking to make changes this month, or just exploring?</div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Is there a budget you've set aside for improving your sales infrastructure?<span class="q-tip">Qualifies budget early — frame as investment, not cost</span></div></li>
+          </ul>
         </div>
       </div>
     </div>
 
+    <!-- PITCH CALLS -->
+    <div class="section">
+      <div class="q-phase">
+        <div class="q-phase-header">
+          <div class="q-phase-icon pitch">&#127919;</div>
+          <div>
+            <div class="q-phase-title">Pitch / Demo Call</div>
+            <div class="q-phase-subtitle">Show the system — anchor value before revealing price</div>
+          </div>
+        </div>
+
+        <div class="q-category">
+          <div class="q-cat-label">Value Anchoring</div>
+          <ul class="q-list">
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>If you could respond to every lead within 60 seconds — 24/7 — how much more revenue do you think that would generate?<span class="q-tip">Gets the prospect to self-quantify the value</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>What would it cost to hire someone full-time to do what this AI does — answer calls, send follow-ups, book appointments?<span class="q-tip">Anchors against $3,500-5,000/mo for a full-time employee</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>How many extra deals per month would it take for this to pay for itself?<span class="q-tip">Usually 1-2 deals — makes the ROI obvious</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Right now, what percentage of your leads would you say actually get proper follow-up?</div></li>
+          </ul>
+        </div>
+
+        <div class="q-category">
+          <div class="q-cat-label">Objection Discovery</div>
+          <ul class="q-list">
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>What's your biggest concern about using AI in your business?<span class="q-tip">Surfaces objections early so you can address them</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Is there anyone else involved in this decision that we should loop in?<span class="q-tip">Avoids "I need to talk to my partner" later</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>What would need to be true for you to feel confident moving forward with this?</div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Have you been burned by an agency or automation tool before? What happened?<span class="q-tip">Builds trust — shows you care about their past experience</span></div></li>
+          </ul>
+        </div>
+
+        <div class="q-category">
+          <div class="q-cat-label">Fit &amp; Scope</div>
+          <ul class="q-list">
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Of the services I showed you — chatbot, voice AI, SMS, follow-ups, booking — which ones would make the biggest impact for you?<span class="q-tip">Helps build a custom package vs. overwhelming them</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Would you want to start with the core package and expand later, or go all-in from day one?<span class="q-tip">Sets up Starter vs Flagship bundle decision</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Are there any specific integrations you'd need — calendar, CRM, phone system, POS?</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROPOSAL CALLS -->
+    <div class="section">
+      <div class="q-phase">
+        <div class="q-phase-header">
+          <div class="q-phase-icon proposal">&#128200;</div>
+          <div>
+            <div class="q-phase-title">Proposal / Close Call</div>
+            <div class="q-phase-subtitle">Present the quote — handle objections — close the deal</div>
+          </div>
+        </div>
+
+        <div class="q-category">
+          <div class="q-cat-label">Pre-Close Temperature Check</div>
+          <ul class="q-list">
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Since our last call, have you had any more thoughts or questions about the system?</div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>On a scale of 1-10, how interested are you in getting this set up?<span class="q-tip">Anything below 7 = address concerns before presenting price</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Has anything changed in your business since we last spoke that I should know about?</div></li>
+          </ul>
+        </div>
+
+        <div class="q-category">
+          <div class="q-cat-label">Price Presentation &amp; Framing</div>
+          <ul class="q-list">
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Before I go through the numbers — would you rather see the full system or the starter package?<span class="q-tip">Lets them self-select budget level</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Would quarterly or annual billing work better for you? There's a discount for committing longer.<span class="q-tip">Frames discount as a reward, not a concession</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Based on what you told me — [X leads/mo] at [$X deal value] — the system only needs to close [1-2] extra deals per month to pay for itself. Does that math make sense to you?<span class="q-tip">Tie back to their own numbers from discovery</span></div></li>
+          </ul>
+        </div>
+
+        <div class="q-category">
+          <div class="q-cat-label">Objection Handling</div>
+          <ul class="q-list">
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Is it the price that's giving you pause, or is there something else?<span class="q-tip">Separates real objections from price anchoring</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>If the price wasn't a factor, would you move forward today?<span class="q-tip">If yes = price objection. If no = dig deeper.</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>What would you need to see in the first 30 days to feel like this was a great investment?<span class="q-tip">Sets realistic expectations and success criteria</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>You mentioned [concern] — let me show you exactly how we handle that.<span class="q-tip">Reference a specific concern from earlier in the convo</span></div></li>
+          </ul>
+        </div>
+
+        <div class="q-category">
+          <div class="q-cat-label">Closing</div>
+          <ul class="q-list">
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Everything we build is installed in your own tools — you own it. The only question is: do you want us to get started this week or next?<span class="q-tip">Assumptive close — emphasizes ownership</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>We can have your system live in about a week. What day works to kick off?<span class="q-tip">Moves from "if" to "when"</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Would you like to start with the starter bundle and upgrade later, or lock in the full system now at the better rate?<span class="q-tip">Gives two "yes" options instead of yes/no</span></div></li>
+          </ul>
+        </div>
+
+        <div class="q-category">
+          <div class="q-cat-label">Current &amp; Returning Clients</div>
+          <ul class="q-list">
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>How has the system been performing for you so far? What's working best?<span class="q-tip">Opens upsell opportunity from a place of success</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Are there any channels your leads are coming from that the AI isn't covering yet?<span class="q-tip">Identifies add-on opportunities (WhatsApp, social DM, email)</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Have your lead volumes changed? We should make sure your system is scaled to match.<span class="q-tip">Justifies tier/pricing adjustments for growing clients</span></div></li>
+            <li class="q-item" onclick="toggleQ(this)"><div class="q-check"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2"><path d="M2 6l3 3 5-5"/></svg></div><div>Would you be interested in owning the system outright? We have a licensing option that could save you a lot long-term.<span class="q-tip">Opens the white-label / licensing conversation</span></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INTERNAL PANEL -->
+<div class="panel-overlay" id="panelOverlay" onclick="toggleInternalPanel()"></div>
+<div class="internal-panel" id="internalPanel">
+  <div class="internal-panel-header">
+    <div><h2>Internal View</h2><span class="internal-badge">Not Client-Facing</span></div>
+    <button class="internal-close" onclick="toggleInternalPanel()">&times;</button>
+  </div>
+  <div class="internal-body">
+    <div class="internal-section">
+      <h3>Cost to Deliver (Setup)</h3>
+      <div class="cost-row"><span class="cr-label">Kyle / American (<span id="intKyleHrs">2</span>hrs x $250)</span><span class="cr-value" id="intKyleCost">$500</span></div>
+      <div style="margin-bottom:8px;"><input type="range" id="intKyleSlider" min="0" max="20" value="2" step="0.5" style="width:100%;" oninput="calcInternal()"></div>
+      <div class="cost-row"><span class="cr-label">Bryan (<span id="intBryanHrs">8</span>hrs x $125)</span><span class="cr-value" id="intBryanCost">$1,000</span></div>
+      <div style="margin-bottom:8px;"><input type="range" id="intBryanSlider" min="0" max="40" value="8" step="0.5" style="width:100%;" oninput="calcInternal()"></div>
+      <div class="cost-row"><span class="cr-label">VA (<span id="intVAHrs">16</span>hrs x $4 actual)</span><span class="cr-value" id="intVACost">$64</span></div>
+      <div style="margin-bottom:8px;"><input type="range" id="intVASlider" min="0" max="80" value="16" step="1" style="width:100%;" oninput="calcInternal()"></div>
+      <div class="cost-row total-row"><span class="cr-label">Total Delivery Cost</span><span class="cr-value" id="intTotalDelivery">$1,564</span></div>
+    </div>
+    <div class="internal-section">
+      <h3>Markup Calculator</h3>
+      <div class="slider-group">
+        <label>Markup Multiplier <span id="markupDisplay">3.0x</span></label>
+        <input type="range" id="markupSlider" min="2" max="6" value="3" step="0.5" oninput="calcInternal()">
+      </div>
+      <div class="cost-row"><span class="cr-label">Delivery Cost</span><span class="cr-value" id="intMarkupBase">$1,564</span></div>
+      <div class="cost-row"><span class="cr-label">Recommended Setup Fee</span><span class="cr-value" style="color:var(--gold);" id="intRecSetup">$4,692</span></div>
+      <div class="cost-row"><span class="cr-label">Actual Setup Fee (from quote)</span><span class="cr-value" style="color:var(--accent-2);" id="intActualSetup">$0</span></div>
+    </div>
+    <div class="internal-section">
+      <h3>Monthly Margin Analysis</h3>
+      <div class="cost-row"><span class="cr-label">Monthly Revenue (services + mgmt)</span><span class="cr-value" id="intMonthlyRev">$0</span></div>
+      <div class="cost-row"><span class="cr-label">Software/API Cost (our share)</span><span class="cr-value" id="intMonthlySoftware">$0</span></div>
+      <div class="cost-row"><span class="cr-label">VA Maintenance (~6hrs x $4)</span><span class="cr-value" id="intMonthlyVA">$24</span></div>
+      <div class="cost-row"><span class="cr-label">American Time (~2hrs x $50 cost)</span><span class="cr-value" id="intMonthlyAmerican">$100</span></div>
+      <div class="cost-row total-row"><span class="cr-label">Monthly Profit</span><span class="cr-value" id="intMonthlyProfit">$0</span></div>
+      <div class="margin-bar"><div class="margin-fill" id="marginFill" style="width:0%;background:var(--green);"></div></div>
+      <div class="margin-label">
+        <span style="color:var(--text-muted);">0%</span>
+        <span style="font-weight:700;" id="marginPercent">0% margin</span>
+        <span style="color:var(--text-muted);">100%</span>
+      </div>
+    </div>
+    <div class="internal-section">
+      <h3>Actual Software Costs (Our Side)</h3>
+      <div class="cost-row"><span class="cr-label">GoHighLevel Unlimited</span><span class="cr-value">$297/mo</span></div>
+      <div class="cost-row"><span class="cr-label">N8N (shared)</span><span class="cr-value">$60/mo</span></div>
+      <div class="cost-row"><span class="cr-label">Supabase</span><span class="cr-value">$25/mo</span></div>
+      <div class="cost-row"><span class="cr-label">Phone Numbers (2)</span><span class="cr-value">$3.14/mo</span></div>
+      <div class="cost-row"><span class="cr-label">OpenAI (est. <span id="intLeadCount">100</span> leads)</span><span class="cr-value" id="intOpenAICost">$5</span></div>
+      <div class="cost-row"><span class="cr-label">Twilio (est.)</span><span class="cr-value" id="intTwilioCost">$16</span></div>
+      <div class="cost-row"><span class="cr-label">Retell.ai (est.)</span><span class="cr-value" id="intRetellCost">$30</span></div>
+      <div class="cost-row total-row"><span class="cr-label">Total Monthly Software</span><span class="cr-value" id="intTotalSoftware">$436</span></div>
+    </div>
   </div>
 </div>
 
 <!-- Quote Modal -->
-<div id="quoteModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1000;display:none;align-items:center;justify-content:center;padding:24px;">
-  <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;max-width:600px;width:100%;max-height:90vh;overflow-y:auto;padding:32px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
-      <h2 style="font-size:20px;font-weight:800;">Client Quote</h2>
+<div class="modal-overlay" id="quoteModal">
+  <div class="modal-content">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <h2 style="font-size:18px;font-weight:800;">Client Quote</h2>
       <button onclick="closeModal()" style="background:none;border:none;color:var(--text-dim);font-size:24px;cursor:pointer;">&times;</button>
     </div>
-    <pre id="quoteText" style="white-space:pre-wrap;font-family:'Inter',sans-serif;font-size:13px;line-height:1.8;color:var(--text);background:var(--surface-2);padding:24px;border-radius:12px;border:1px solid var(--border);"></pre>
-    <button class="btn-generate" onclick="copyQuote();closeModal();" style="margin-top:16px;">Copy to Clipboard</button>
+    <pre id="quoteText" style="white-space:pre-wrap;font-family:'Inter',sans-serif;font-size:13px;line-height:1.8;color:var(--text);background:var(--surface-2);padding:20px;border-radius:12px;border:1px solid var(--border);"></pre>
+    <button class="btn-primary" onclick="copyQuote();closeModal();">Copy to Clipboard</button>
   </div>
 </div>
 
 <script>
-// ============================================================
-// PRICING DATA — Based on market rates for AI automation services
-// ============================================================
-
-const SERVICES = [
-  { id: 'chatbot',    name: 'AI Website Chatbot',       desc: 'Instant lead capture & qualification on website',    basePrice: 497,  importance: 5, setup: 500  },
-  { id: 'voiceai',    name: 'AI Voice Agent',            desc: '24/7 inbound call handling & routing',               basePrice: 697,  importance: 5, setup: 750  },
-  { id: 'smsai',      name: 'AI SMS Assistant',          desc: 'Automated text conversations & lead nurturing',      basePrice: 397,  importance: 4, setup: 400  },
-  { id: 'followup',   name: 'AI Follow-Up Engine',       desc: 'Multi-channel automated follow-up sequences',        basePrice: 347,  importance: 4, setup: 350  },
-  { id: 'booking',    name: 'Appointment Booking System', desc: 'AI-powered scheduling integrated with calendar',    basePrice: 297,  importance: 4, setup: 300  },
-  { id: 'crm',        name: 'Automated CRM Pipeline',    desc: 'Lead tracking, tagging, and pipeline management',   basePrice: 297,  importance: 3, setup: 400  },
-  { id: 'knowledge',  name: 'Knowledge Base Setup',      desc: 'Train AI on business FAQs, services, pricing',      basePrice: 247,  importance: 3, setup: 500  },
-  { id: 'analytics',  name: 'Analytics & Reporting',     desc: 'Conversion tracking, ROI dashboards',               basePrice: 197,  importance: 2, setup: 250  },
-  { id: 'dbrevive',   name: 'Database Reactivation',     desc: 'Re-engage old leads and past customers',            basePrice: 397,  importance: 4, setup: 300  },
-  { id: 'oneprompt',  name: 'OnePrompt Control System',  desc: 'Centralized AI brain — manages all components',     basePrice: 497,  importance: 5, setup: 600  },
+// === DATA ===
+const SERVICES=[
+  {id:'chatbot',name:'AI Website Chatbot',desc:'Instant lead capture & qualification',basePrice:497,setup:500,importance:5},
+  {id:'voiceai',name:'AI Voice Agent',desc:'24/7 inbound call handling & routing',basePrice:697,setup:750,importance:5},
+  {id:'smsai',name:'AI SMS Assistant',desc:'Automated text conversations & nurturing',basePrice:397,setup:400,importance:4},
+  {id:'followup',name:'AI Follow-Up Engine',desc:'Multi-channel automated follow-up sequences',basePrice:347,setup:350,importance:4},
+  {id:'booking',name:'Appointment Booking System',desc:'AI-powered scheduling with calendar sync',basePrice:297,setup:300,importance:4},
+  {id:'crm',name:'Automated CRM Pipeline',desc:'Lead tracking, tagging, pipeline management',basePrice:297,setup:400,importance:3},
+  {id:'knowledge',name:'Knowledge Base Setup',desc:'Train AI on business FAQs, services, pricing',basePrice:247,setup:500,importance:3},
+  {id:'analytics',name:'Analytics & Reporting',desc:'Conversion tracking, ROI dashboards',basePrice:197,setup:250,importance:2},
+  {id:'dbrevive',name:'Database Reactivation',desc:'Re-engage old leads and past customers',basePrice:397,setup:300,importance:4},
+  {id:'oneprompt',name:'OnePrompt Control System',desc:'Centralized AI brain — manages all components',basePrice:497,setup:600,importance:5},
+];
+const ADDONS=[
+  {id:'whatsapp',name:'WhatsApp Integration',price:197},
+  {id:'email',name:'Email Automation',price:147},
+  {id:'social',name:'Social DM Auto-Reply',price:197},
+  {id:'review',name:'Review Request Automation',price:147},
+  {id:'training',name:'Team Training Session',price:297},
+  {id:'maintenance',name:'Priority Support & Maintenance',price:247},
+];
+const SIZE_MULTI={small:1.0,medium:1.3,large:1.7};
+const SIZE_LABELS={small:'Small (1-10)',medium:'Medium (11-50)',large:'Enterprise (50+)'};
+const IND_MULTI={general:1.0,medical:1.25,dental:1.2,legal:1.3,realestate:1.15,automotive:1.1,homeservices:1.0,fitness:0.95,restaurant:0.9,ecommerce:1.15,saas:1.2,agency:1.1,construction:1.05,salon:0.95};
+const IND_LABELS={general:'General',medical:'Medical/Healthcare',dental:'Dental',legal:'Legal',realestate:'Real Estate',automotive:'Automotive',homeservices:'Home Services',fitness:'Fitness/Wellness',restaurant:'Restaurant/F&B',ecommerce:'E-Commerce',saas:'SaaS/Tech',agency:'Agency',construction:'Construction',salon:'Salon/Beauty'};
+const CLIENT_DISCOUNT={new:0,current:0.15,potential:0.10};
+const CLIENT_LABELS={new:'New Client',current:'Current Client',potential:'Potential Client'};
+const PRICING_LABELS={monthly:'/ month',quarterly:'/ quarter',annual:'/ year'};
+const PRICING_MULTI={monthly:1,quarterly:2.7,annual:9.6};
+const MGMT_BASE_FEE=200;
+const MGMT_PER_SERVICE=100; // (E) only counts core services, not addons
+const FIXED_SOFTWARE=297+60+25+3.14;
+const OPENAI_PER_LEAD=0.05;
+const TWILIO_PER_LEAD=0.16;
+const RETELL_PER_LEAD=0.30;
+const BUILD_INHOUSE=[
+  {component:'CRM Platform (HubSpot/Salesforce)',monthly:300,setup:2000},
+  {component:'AI Chatbot (Drift/Intercom)',monthly:500,setup:3000},
+  {component:'Voice AI (Custom Dev)',monthly:400,setup:8000},
+  {component:'SMS Platform (Twilio + Custom)',monthly:200,setup:4000},
+  {component:'Follow-up Automation (Custom)',monthly:150,setup:3000},
+  {component:'Booking System (Calendly Pro)',monthly:120,setup:500},
+  {component:'Analytics (Custom Dashboard)',monthly:200,setup:5000},
+  {component:'Developer Maintenance',monthly:2000,setup:0},
+  {component:'Integration & QA Testing',monthly:0,setup:5000},
 ];
 
-const ADDONS = [
-  { id: 'whatsapp',   name: 'WhatsApp Integration',     price: 197 },
-  { id: 'email',      name: 'Email Automation',          price: 147 },
-  { id: 'social',     name: 'Social DM Auto-Reply',      price: 197 },
-  { id: 'review',     name: 'Review Request Automation', price: 147 },
-  { id: 'training',   name: 'Team Training Session',     price: 297 },
-  { id: 'maintenance', name: 'Priority Support & Maintenance', price: 247 },
-];
-
-const SIZE_MULTIPLIER = { small: 1.0, medium: 1.3, large: 1.7 };
-const SIZE_LABELS = { small: 'Small (1-10)', medium: 'Medium (11-50)', large: 'Enterprise (50+)' };
-
-const INDUSTRY_MULTIPLIER = {
-  general: 1.0, medical: 1.25, dental: 1.2, legal: 1.3,
-  realestate: 1.15, automotive: 1.1, homeservices: 1.0,
-  fitness: 0.95, restaurant: 0.9, ecommerce: 1.15,
-  saas: 1.2, agency: 1.1, construction: 1.05, salon: 0.95,
+// (B) Bundle definitions
+const BUNDLES={
+  starter:{ services:['smsai','followup','booking','crm','oneprompt'], addons:[] },
+  flagship:{ services:['chatbot','voiceai','smsai','followup','booking','crm','knowledge','analytics','oneprompt'], addons:['review'] },
 };
 
-const INDUSTRY_LABELS = {
-  general: 'General', medical: 'Medical/Healthcare', dental: 'Dental',
-  legal: 'Legal', realestate: 'Real Estate', automotive: 'Automotive',
-  homeservices: 'Home Services', fitness: 'Fitness/Wellness',
-  restaurant: 'Restaurant/F&B', ecommerce: 'E-Commerce',
-  saas: 'SaaS/Tech', agency: 'Agency', construction: 'Construction', salon: 'Salon/Beauty',
+// (C) Flagship baseline pricing
+const FLAGSHIP_MONTHLY_BASE=2500;
+const FLAGSHIP_SETUP_BASE=4000;
+
+// (D) Price floors
+const FLAGSHIP_MONTHLY_FLOOR=2500;
+const FLAGSHIP_SETUP_FLOOR=4000;
+
+// Setup discount by client type
+const SETUP_DISCOUNT={new:0,current:0.25,potential:0.10};
+
+// === STATE ===
+let state={
+  clientType:'new', size:'small', pricingModel:'monthly',
+  pricingMode:'close',
+  offerType:'flagship', // (A) 'flagship' or 'custom'
+  pilotMode:false, // (F) pilot pricing
+  allowDiscountBelowBaseline:false, // (D)
+  selectedServices:new Set(BUNDLES.flagship.services),
+  addons:new Set(BUNDLES.flagship.addons), leadVolume:100,
 };
+let headerClickCount=0,headerClickTimer=null;
 
-const CLIENT_DISCOUNT = { new: 0, current: 0.15, potential: 0.10 };
-const CLIENT_LABELS = { new: 'New Client', current: 'Current Client', potential: 'Potential Client' };
-const PRICING_LABELS = { monthly: '/ month', quarterly: '/ quarter', annual: '/ year' };
-const PRICING_MULTI = { monthly: 1, quarterly: 2.7, annual: 9.6 };  // quarterly = 3mo * 0.9, annual = 12mo * 0.8
+// === TAB SWITCHING ===
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');btn.classList.add('active');
+  if(id==='roi')calcROI();if(id==='compare')calcCompare();if(id==='licensing')calcLicense();
+}
 
-// ============================================================
-// STATE
-// ============================================================
+// === INTERNAL PANEL ===
+document.getElementById('headerBadge').addEventListener('click',function(){
+  headerClickCount++;clearTimeout(headerClickTimer);
+  headerClickTimer=setTimeout(()=>{headerClickCount=0;},600);
+  if(headerClickCount>=3){headerClickCount=0;toggleInternalPanel();}
+});
+document.addEventListener('keydown',function(e){if(e.ctrlKey&&e.shiftKey&&e.key==='I'){e.preventDefault();toggleInternalPanel();}});
+function toggleInternalPanel(){
+  const p=document.getElementById('internalPanel'),o=document.getElementById('panelOverlay');
+  if(p.classList.contains('open')){p.classList.remove('open');o.classList.remove('show');}
+  else{calcInternal();p.classList.add('open');o.classList.add('show');}
+}
 
-let state = {
-  clientType: 'new',
-  size: 'small',
-  pricingModel: 'monthly',
-  selectedServices: new Set(['chatbot', 'voiceai', 'smsai', 'followup', 'booking', 'oneprompt']),
-  addons: new Set(),
-};
-
-// ============================================================
-// RENDER
-// ============================================================
-
-function renderServices() {
-  const container = document.getElementById('serviceList');
-  container.innerHTML = SERVICES.map(s => {
-    const selected = state.selectedServices.has(s.id);
-    const stars = '★'.repeat(s.importance) + '☆'.repeat(5 - s.importance);
-    return `
-      <div class="service-item ${selected ? 'selected' : ''}" onclick="toggleService('${s.id}')">
-        <div class="service-check">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <div class="service-info">
-          <div class="service-name">${s.name}</div>
-          <div class="service-desc">${s.desc} &nbsp;·&nbsp; Importance: ${stars}</div>
-        </div>
-        <div class="service-price">$${s.basePrice}/mo</div>
-      </div>
-    `;
+// === RENDER ===
+function renderServices(){
+  const locked=state.offerType==='flagship';
+  document.getElementById('serviceList').innerHTML=SERVICES.map(s=>{
+    const sel=state.selectedServices.has(s.id);
+    const onclick=locked?'':'toggleService(\''+s.id+'\')';
+    const opacity=locked&&!sel?'opacity:0.4;':'';
+    return`<div class="service-item ${sel?'selected':''}" onclick="${onclick}" style="cursor:${locked?'default':'pointer'};${opacity}"><div class="service-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div class="service-info"><div class="service-name">${s.name}</div><div class="service-desc">${s.desc}</div></div><div class="service-price">${locked?'':'$'+s.basePrice+'/mo'}</div></div>`;
+  }).join('');
+}
+function renderAddons(){
+  document.getElementById('addonList').innerHTML=ADDONS.map(a=>{
+    const on=state.addons.has(a.id);
+    return`<div class="addon-row"><span class="addon-label">${a.name}</span><span class="addon-price">$${a.price}/mo</span><div class="addon-toggle ${on?'on':''}" onclick="toggleAddon('${a.id}')"></div></div>`;
   }).join('');
 }
 
-function renderAddons() {
-  const container = document.getElementById('addonList');
-  container.innerHTML = ADDONS.map(a => {
-    const on = state.addons.has(a.id);
-    return `
-      <div class="addon-row">
-        <span class="addon-label">${a.name}</span>
-        <span class="addon-price">$${a.price}/mo</span>
-        <div class="addon-toggle ${on ? 'on' : ''}" onclick="toggleAddon('${a.id}')"></div>
-      </div>
-    `;
-  }).join('');
+function renderMgmt(){
+  if(state.offerType==='flagship'){
+    document.getElementById('mgmtBreakdown').innerHTML=`<div class="mgmt-line"><span class="ml-label">Management & Strategy</span><span class="ml-value" style="color:var(--green);">Included in Flagship</span></div><div class="mgmt-line" style="font-size:11px;"><span class="ml-label" style="color:var(--text-muted);">Monthly strategy calls, system optimization, and ongoing support included in $${FLAGSHIP_MONTHLY_BASE.toLocaleString()}/mo baseline.</span></div>`;
+    return;
+  }
+  const coreCount=state.selectedServices.size;
+  const perSvc=coreCount*MGMT_PER_SERVICE;const total=MGMT_BASE_FEE+perSvc;
+  document.getElementById('mgmtBreakdown').innerHTML=`<div class="mgmt-line"><span class="ml-label">Base Management Fee</span><span class="ml-value">$${MGMT_BASE_FEE}/mo</span></div><div class="mgmt-line"><span class="ml-label">${coreCount} core services x $${MGMT_PER_SERVICE}</span><span class="ml-value">$${perSvc}/mo</span></div><div class="mgmt-line total"><span class="ml-label">Total Management Fee</span><span class="ml-value">$${total}/mo</span></div>`;
 }
 
-function calculate() {
-  const industry = document.getElementById('industry').value;
-  const indMulti = INDUSTRY_MULTIPLIER[industry];
-  const sizeMulti = SIZE_MULTIPLIER[state.size];
-  const discount = CLIENT_DISCOUNT[state.clientType];
-  const pricingMulti = PRICING_MULTI[state.pricingModel];
+function renderSoftwareCosts(){
+  const l=state.leadVolume;const oa=Math.round(l*OPENAI_PER_LEAD);const tw=Math.round(l*TWILIO_PER_LEAD);const rt=Math.round(l*RETELL_PER_LEAD);const tot=297+60+25+3+oa+tw+rt;
+  document.getElementById('softwareCosts').innerHTML=`<div class="cost-row"><span class="cr-label">GoHighLevel Unlimited</span><span class="cr-value">$297/mo</span></div><div class="cost-row"><span class="cr-label">N8N Subscription</span><span class="cr-value">$60/mo</span></div><div class="cost-row"><span class="cr-label">Supabase</span><span class="cr-value">$25/mo</span></div><div class="cost-row"><span class="cr-label">Phone Numbers</span><span class="cr-value">~$3/mo</span></div><div class="cost-row"><span class="cr-label">OpenAI API (${l} leads)</span><span class="cr-value">~$${oa}/mo</span></div><div class="cost-row"><span class="cr-label">Twilio SMS+Voice (${l} leads)</span><span class="cr-value">~$${tw}/mo</span></div><div class="cost-row"><span class="cr-label">Retell.ai Voice (${l} leads)</span><span class="cr-value">~$${rt}/mo</span></div><div class="cost-row total-row"><span class="cr-label">Estimated Total</span><span class="cr-value">~$${tot}/mo</span></div><div class="complexity-info" style="margin-top:10px;">These costs are billed directly to the client based on their actual usage.</div>`;
+}
 
-  // Base monthly total for selected services
-  let serviceTotal = 0;
-  let setupTotal = 0;
-  const selectedList = [];
-  SERVICES.forEach(s => {
-    if (state.selectedServices.has(s.id)) {
-      serviceTotal += s.basePrice;
-      setupTotal += s.setup;
-      selectedList.push({ name: s.name, price: s.basePrice });
+// (F) Voice usage
+function getVoiceOverage(){
+  const leads=state.leadVolume;
+  const pctCall=parseFloat(document.getElementById('voicePctCall').value)||0;
+  const avgMin=parseFloat(document.getElementById('voiceAvgMin').value)||0;
+  const pctAI=parseFloat(document.getElementById('voicePctAI').value)||0;
+  const included=parseFloat(document.getElementById('voiceIncluded').value)||0;
+  const rate=parseFloat(document.getElementById('voiceOverageRate').value)||0;
+  const estCalls=leads*(pctCall/100);
+  const aiCalls=estCalls*(pctAI/100);
+  const estMinutes=aiCalls*avgMin;
+  const overage=Math.max(0,estMinutes-included);
+  const cost=Math.round(overage*rate*100)/100;
+  return{estMinutes:Math.round(estMinutes),included,overage:Math.round(overage),cost};
+}
+function renderVoiceResult(){
+  const v=getVoiceOverage();
+  const modeNote=state.pricingMode==='close'?' (not added to total — Close Rate mode)':' (added to total — Margin mode)';
+  document.getElementById('voiceResult').innerHTML=`<div class="cost-row"><span class="cr-label">Estimated AI voice minutes/mo</span><span class="cr-value">${v.estMinutes}</span></div><div class="cost-row"><span class="cr-label">Included minutes</span><span class="cr-value">${v.included}</span></div><div class="cost-row"><span class="cr-label">Overage minutes</span><span class="cr-value">${v.overage}</span></div><div class="cost-row total-row"><span class="cr-label">Est. overage cost/mo</span><span class="cr-value">$${v.cost.toFixed(2)}${modeNote}</span></div>`;
+}
+
+// === LEAD VOLUME (C + D) ===
+function getLeadMultiplier(leads){
+  const raw=1+(leads/100)*0.05;
+  // (D) cap depends on pricing mode
+  if(state.pricingMode==='close')return Math.min(raw,1.20);
+  return Math.min(raw,1.75); // margin mode
+}
+function onLeadSliderChange(){
+  state.leadVolume=parseInt(document.getElementById('leadVolume').value);
+  document.getElementById('leadsManual').value='';
+  updateLeadDisplay();calculate();
+}
+function onLeadManualChange(){
+  const v=parseInt(document.getElementById('leadsManual').value);
+  if(v&&v>0){
+    state.leadVolume=v;
+    const slider=document.getElementById('leadVolume');
+    slider.value=Math.min(v,parseInt(slider.max));
+  }
+  updateLeadDisplay();calculate();
+}
+function updateLeadDisplay(){
+  document.getElementById('leadCountDisplay').textContent=state.leadVolume;
+  const m=getLeadMultiplier(state.leadVolume);
+  const modeLabel=state.pricingMode==='close'?'cap 1.20x, mgmt only':'cap 1.75x, all fees';
+  document.getElementById('leadMultiNote').textContent=`Lead multiplier: ${m.toFixed(2)}x (${state.leadVolume} leads/mo \u2014 ${modeLabel})`;
+}
+
+// === PRICING MODE (A) ===
+function setPricingMode(mode,btn){
+  document.querySelectorAll('#pricingModeToggle button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');state.pricingMode=mode;
+  const tag=document.getElementById('quoteModeTag');
+  tag.textContent=mode==='close'?'Close Rate':'Margin';
+  tag.className='mode-indicator '+mode;
+  const note=mode==='close'
+    ?'Close Rate: Lead multiplier capped at 1.20x, applied to management fee only.'
+    :'Margin: Lead multiplier capped at 1.75x, applied to services + management fee.';
+  document.getElementById('pricingModeNote').textContent=note;
+  updateLeadDisplay();calculate();
+}
+
+// === OFFER TYPE (A) ===
+function setOfferType(type,el){
+  document.querySelectorAll('.offer-type-card').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  state.offerType=type;
+  const isFlagship=type==='flagship';
+  document.getElementById('flagshipNote').classList.toggle('show',isFlagship);
+  document.getElementById('flagshipServicesNote').classList.toggle('show',isFlagship);
+  document.getElementById('bundleSection').style.display=isFlagship?'none':'block';
+  if(isFlagship)applyFlagshipBundle();
+  renderServices();renderAddons();calculate();
+}
+function applyFlagshipBundle(){
+  const b=BUNDLES.flagship;
+  state.selectedServices=new Set(b.services);
+  state.addons=new Set(b.addons);
+}
+
+// === PILOT (F) ===
+function togglePilot(){
+  state.pilotMode=document.getElementById('pilotCheck').checked;
+  state.allowDiscountBelowBaseline=state.pilotMode;
+  document.getElementById('quotePilotBadge').classList.toggle('show',state.pilotMode);
+  calculate();
+}
+
+// === BUNDLES (B) ===
+function applyBundle(key){
+  const b=BUNDLES[key];if(!b)return;
+  state.selectedServices=new Set(b.services);
+  state.addons=new Set(b.addons);
+  document.querySelectorAll('.bundle-btn').forEach(el=>el.classList.remove('active'));
+  const btnId=key==='starter'?'bundleStarter':'bundleFlagship';
+  document.getElementById(btnId).classList.add('active');
+  renderServices();renderAddons();calculate();
+}
+function clearSelection(){
+  state.selectedServices=new Set();state.addons=new Set();
+  document.querySelectorAll('.bundle-btn').forEach(el=>el.classList.remove('active'));
+  renderServices();renderAddons();calculate();
+}
+
+// === MAIN CALCULATE ===
+function calculate(){
+  const industry=document.getElementById('industry').value;
+  const indM=IND_MULTI[industry],sizeM=SIZE_MULTI[state.size],disc=CLIENT_DISCOUNT[state.clientType],prM=PRICING_MULTI[state.pricingModel];
+  const leadM=getLeadMultiplier(state.leadVolume);
+  const setupDisc=SETUP_DISCOUNT[state.clientType]||0;
+
+  // (F) voice overage
+  const voice=getVoiceOverage();
+  renderVoiceResult();
+
+  let monthlyTotal,setupFinal,svcTotal=0,addonTotal=0,setupTotal=0,mgmtBase=0;
+  const selList=[];
+  SERVICES.forEach(s=>{if(state.selectedServices.has(s.id)){svcTotal+=s.basePrice;setupTotal+=s.setup;selList.push({name:s.name,price:s.basePrice});}});
+  ADDONS.forEach(a=>{if(state.addons.has(a.id)){addonTotal+=a.price;selList.push({name:a.name,price:a.price});}});
+  const coreCount=state.selectedServices.size;
+  mgmtBase=MGMT_BASE_FEE+coreCount*MGMT_PER_SERVICE;
+
+  let discAmt=0;
+
+  if(state.offerType==='flagship'){
+    // (C) Flagship: use baseline pricing, ignore per-service sums
+    let monthlyBase=FLAGSHIP_MONTHLY_BASE*sizeM*indM*leadM;
+    let setupBase=FLAGSHIP_SETUP_BASE*sizeM*indM;
+
+    // Apply relationship discount
+    discAmt=monthlyBase*disc;
+    monthlyBase=monthlyBase-discAmt;
+    setupBase=setupBase*(1-setupDisc);
+
+    // (F) voice overage in margin mode
+    let voiceForTotal=(state.pricingMode==='margin')?voice.cost:0;
+    monthlyTotal=monthlyBase+voiceForTotal;
+    setupFinal=Math.round(setupBase);
+
+    // (F) Pilot mode
+    if(state.pilotMode){
+      setupFinal=Math.round(setupFinal*0.50);
+      // 20% off first month is informational — show in quote text, don't change the recurring calc
     }
-  });
 
-  // Add addons
-  ADDONS.forEach(a => {
-    if (state.addons.has(a.id)) {
-      serviceTotal += a.price;
-      selectedList.push({ name: a.name, price: a.price });
+    // (D) Price floors (unless pilot allows below)
+    if(!state.allowDiscountBelowBaseline){
+      if(monthlyTotal<FLAGSHIP_MONTHLY_FLOOR)monthlyTotal=FLAGSHIP_MONTHLY_FLOOR;
+      if(setupFinal<FLAGSHIP_SETUP_FLOOR)setupFinal=FLAGSHIP_SETUP_FLOOR;
     }
-  });
-
-  // Apply multipliers
-  let adjusted = serviceTotal * sizeMulti * indMulti;
-  let discountAmount = adjusted * discount;
-  let afterDiscount = adjusted - discountAmount;
-
-  // Apply pricing model period
-  let periodTotal = afterDiscount * pricingMulti;
-  let setupFinal = setupTotal * sizeMulti;
-
-  // If current client, reduce setup fee by 25%
-  if (state.clientType === 'current') {
-    setupFinal *= 0.75;
+  }else{
+    // Custom mode: existing per-service calculation
+    let adjustedSvc,adjustedMgmt;
+    if(state.pricingMode==='close'){
+      adjustedSvc=(svcTotal+addonTotal)*sizeM*indM;
+      adjustedMgmt=mgmtBase*leadM;
+    }else{
+      adjustedSvc=(svcTotal+addonTotal)*sizeM*indM*leadM;
+      adjustedMgmt=mgmtBase*leadM;
+    }
+    let totalBeforeDiscount=adjustedSvc+adjustedMgmt;
+    discAmt=totalBeforeDiscount*disc;
+    let afterDisc=totalBeforeDiscount-discAmt;
+    let voiceForTotal=(state.pricingMode==='margin')?voice.cost:0;
+    monthlyTotal=afterDisc+voiceForTotal;
+    setupFinal=Math.round(setupTotal*sizeM);
+    setupFinal=Math.round(setupFinal*(1-setupDisc));
   }
 
-  // Round
-  periodTotal = Math.round(periodTotal);
-  setupFinal = Math.round(setupFinal);
-  let monthlyEquiv = Math.round(afterDiscount);
-
-  // Update UI
-  document.getElementById('totalPrice').textContent = periodTotal.toLocaleString();
-  document.getElementById('quotePeriod').textContent = PRICING_LABELS[state.pricingModel];
-  document.getElementById('qClientType').textContent = CLIENT_LABELS[state.clientType];
-  document.getElementById('qBizSize').textContent = SIZE_LABELS[state.size];
-  document.getElementById('qIndustry').textContent = INDUSTRY_LABELS[industry];
-  document.getElementById('qDiscount').textContent = discount > 0 ? `${(discount * 100)}%` : 'None';
-  document.getElementById('qSubtotal').textContent = `$${serviceTotal.toLocaleString()}/mo`;
-  document.getElementById('qSizeMulti').textContent = `${sizeMulti}x`;
-  document.getElementById('qIndMulti').textContent = `${indMulti}x`;
-  document.getElementById('qTotal').textContent = `$${periodTotal.toLocaleString()}`;
-  document.getElementById('qSetup').textContent = `$${setupFinal.toLocaleString()}`;
-  document.getElementById('qAnnual').textContent = `$${(monthlyEquiv * 12 + setupFinal).toLocaleString()}`;
+  let periodTotal=Math.round(monthlyTotal*prM);
+  let monthlyEquiv=Math.round(monthlyTotal);
 
   // Industry note
-  const noteEl = document.getElementById('industryNote');
-  if (indMulti > 1) {
-    noteEl.textContent = `${INDUSTRY_LABELS[industry]} industry: ${indMulti}x multiplier (higher compliance/complexity)`;
-  } else if (indMulti < 1) {
-    noteEl.textContent = `${INDUSTRY_LABELS[industry]} industry: ${indMulti}x multiplier (simpler setup)`;
-  } else {
-    noteEl.textContent = 'Standard industry rate — no adjustment applied';
+  const noteEl=document.getElementById('industryNote');
+  if(indM>1)noteEl.textContent=`${IND_LABELS[industry]}: ${indM}x multiplier (higher complexity)`;
+  else if(indM<1)noteEl.textContent=`${IND_LABELS[industry]}: ${indM}x multiplier (simpler setup)`;
+  else noteEl.textContent='Standard industry rate — no adjustment applied';
+
+  // Update quote panel
+  document.getElementById('totalPrice').textContent=periodTotal.toLocaleString();
+  document.getElementById('quotePeriod').textContent=PRICING_LABELS[state.pricingModel];
+  document.getElementById('qClientType').textContent=CLIENT_LABELS[state.clientType];
+  document.getElementById('qBizSize').textContent=SIZE_LABELS[state.size];
+  document.getElementById('qIndustry').textContent=IND_LABELS[industry];
+  document.getElementById('qLeadVol').textContent=state.leadVolume+'/mo';
+  document.getElementById('qDiscount').textContent=disc>0?`${(disc*100)}%`:'None';
+  if(state.offerType==='flagship'){
+    document.getElementById('qSubtotal').textContent=`$${FLAGSHIP_MONTHLY_BASE.toLocaleString()}/mo (baseline)`;
+    document.getElementById('qMgmtFee').textContent='Included';
+  }else{
+    document.getElementById('qSubtotal').textContent=`$${(svcTotal+addonTotal).toLocaleString()}/mo`;
+    document.getElementById('qMgmtFee').textContent=`$${mgmtBase.toLocaleString()}/mo`;
+  }
+  document.getElementById('qVoiceUsage').textContent=voice.cost>0?`~$${voice.cost.toFixed(2)}/mo${state.pricingMode==='close'?' (info only)':''}`:'$0/mo';
+  document.getElementById('qSizeMulti').textContent=`${sizeM}x`;
+  document.getElementById('qIndMulti').textContent=`${indM}x`;
+  document.getElementById('qLeadMulti').textContent=`${leadM.toFixed(2)}x`;
+  document.getElementById('qTotal').textContent=`$${periodTotal.toLocaleString()}`;
+  document.getElementById('qSetup').textContent=`$${setupFinal.toLocaleString()}`;
+  document.getElementById('qAnnual').textContent=`$${(monthlyEquiv*12+setupFinal).toLocaleString()}`;
+
+  const savingsBox=document.getElementById('savingsBox');
+  if(disc>0){savingsBox.style.display='block';const pL={monthly:'/mo',quarterly:'/qtr',annual:'/yr'}[state.pricingModel];document.getElementById('qSavings').textContent=`$${Math.round(discAmt*prM).toLocaleString()} ${pL}`;}
+  else{savingsBox.style.display='none';}
+
+  const servEl=document.getElementById('quoteServices');
+  if(state.offerType==='flagship'){
+    // No per-service itemization in flagship
+    servEl.innerHTML='<div class="qs-item"><span class="qs-name" style="font-weight:700;color:var(--green);">Flagship: Instant Lead-to-Job Engine</span><span class="qs-price">9 services + review automation</span></div>';
+  }else if(selList.length===0){
+    servEl.innerHTML='<div class="empty-state">No services selected</div>';
+  }else{
+    servEl.innerHTML=selList.map(s=>`<div class="qs-item"><span class="qs-name">${s.name}</span><span class="qs-price">$${s.price}/mo</span></div>`).join('');
   }
 
-  // Savings
-  const savingsBox = document.getElementById('savingsBox');
-  if (discount > 0) {
-    savingsBox.style.display = 'block';
-    let savingsPerPeriod = Math.round(discountAmount * pricingMulti);
-    document.getElementById('qSavings').textContent = `$${savingsPerPeriod.toLocaleString()} ${state.pricingModel === 'monthly' ? '/mo' : state.pricingModel === 'quarterly' ? '/qtr' : '/yr'}`;
-  } else {
-    savingsBox.style.display = 'none';
+  renderMgmt();renderSoftwareCosts();
+}
+
+// === INTERACTIONS ===
+function selectClientType(el){document.querySelectorAll('.client-type').forEach(e=>e.classList.remove('active'));el.classList.add('active');state.clientType=el.dataset.type;calculate();}
+function selectSize(el){document.querySelectorAll('.size-option').forEach(e=>e.classList.remove('active'));el.classList.add('active');state.size=el.dataset.size;calculate();}
+function setPricingModel(m,btn){document.querySelectorAll('.pricing-toggle:first-of-type button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');state.pricingModel=m;calculate();}
+function toggleService(id){
+  if(state.offerType==='flagship')return; // locked in flagship mode
+  if(state.selectedServices.has(id))state.selectedServices.delete(id);else state.selectedServices.add(id);
+  document.querySelectorAll('.bundle-btn').forEach(el=>el.classList.remove('active'));
+  renderServices();calculate();
+}
+function toggleAddon(id){if(state.addons.has(id))state.addons.delete(id);else state.addons.add(id);renderAddons();calculate();}
+document.getElementById('industry').addEventListener('change',calculate);
+
+// Voice toggle
+function toggleVoiceSection(){
+  const el=document.getElementById('voiceFields'),ic=document.getElementById('voiceToggleIcon');
+  el.classList.toggle('show');ic.innerHTML=el.classList.contains('show')?'&#9660;':'&#9654;';
+}
+
+// === ROI ===
+function toggleAdvancedROI(){const el=document.getElementById('advancedROI'),ic=document.getElementById('advToggleIcon');el.classList.toggle('show');ic.innerHTML=el.classList.contains('show')?'&#9660;':'&#9654;';}
+function calcROI(){
+  const leads=parseInt(document.getElementById('roiLeads').value);document.getElementById('roiLeadDisplay').textContent=leads;
+  const dv=parseFloat(document.getElementById('roiDealValue').value)||0;
+  const cr=(parseFloat(document.getElementById('roiCloseRate').value)||0)/100;
+  const imp=(parseFloat(document.getElementById('roiImprovement')?.value)||35)/100;
+  const pb=(parseFloat(document.getElementById('roiPerfBonus').value)||0)/100;
+  const curDeals=leads*cr;const aiCR=Math.min(cr*(1+imp),1);const aiDeals=leads*aiCR;
+  const extra=aiDeals-curDeals;const extraRev=extra*dv;const extraYr=extraRev*12;
+  let svcTotal=0;SERVICES.forEach(s=>{if(state.selectedServices.has(s.id))svcTotal+=s.basePrice;});
+  ADDONS.forEach(a=>{if(state.addons.has(a.id))svcTotal+=a.price;});
+  const mgmt=MGMT_BASE_FEE+state.selectedServices.size*MGMT_PER_SERVICE;
+  const monthlyCost=svcTotal+mgmt;const roiPct=monthlyCost>0?Math.round((extraRev/monthlyCost)*100):0;
+  document.getElementById('roiPercent').textContent=roiPct+'%';
+  document.getElementById('roiExtraDeals').textContent=extra.toFixed(1);
+  document.getElementById('roiExtraRev').textContent='$'+Math.round(extraRev).toLocaleString();
+  document.getElementById('roiAnnualGain').textContent='$'+Math.round(extraYr).toLocaleString();
+  document.getElementById('roiBonusMo').textContent='$'+Math.round(extraRev*pb).toLocaleString();
+  document.getElementById('roiBonusYr').textContent='$'+Math.round(extraRev*pb*12).toLocaleString();
+}
+
+// === BUILD VS BUY ===
+function calcCompare(){
+  const body=document.getElementById('compareBody');let ihM=0,ihS=0;
+  let svcTotal=0,setupTotal=0;
+  SERVICES.forEach(s=>{if(state.selectedServices.has(s.id)){svcTotal+=s.basePrice;setupTotal+=s.setup;}});
+  ADDONS.forEach(a=>{if(state.addons.has(a.id))svcTotal+=a.price;});
+  const mgmt=MGMT_BASE_FEE+state.selectedServices.size*MGMT_PER_SERVICE;
+  const softEst=Math.round(FIXED_SOFTWARE+state.leadVolume*(OPENAI_PER_LEAD+TWILIO_PER_LEAD+RETELL_PER_LEAD));
+  const oursM=svcTotal+mgmt+softEst;const oursS=Math.round(setupTotal*SIZE_MULTI[state.size]);
+  body.innerHTML=BUILD_INHOUSE.map(i=>{ihM+=i.monthly;ihS+=i.setup;return`<tr><td>${i.component}</td><td>$${i.monthly>0?i.monthly+'/mo':'\u2014'}${i.setup>0?' + $'+i.setup.toLocaleString()+' setup':''}</td><td style="color:var(--text-muted);">Included</td></tr>`;}).join('');
+  document.getElementById('compareInHouse').textContent='$'+ihM.toLocaleString()+'/mo';
+  document.getElementById('compareOurs').textContent='$'+oursM.toLocaleString()+'/mo';
+  document.getElementById('compareSetupInHouse').textContent='$'+ihS.toLocaleString();
+  document.getElementById('compareSetupOurs').textContent='$'+oursS.toLocaleString();
+  const y1ih=ihM*12+ihS,y1o=oursM*12+oursS;
+  document.getElementById('compareY1InHouse').textContent='$'+y1ih.toLocaleString();
+  document.getElementById('compareY1Ours').textContent='$'+y1o.toLocaleString();
+  const sav=y1ih-y1o;document.getElementById('compareSavings').textContent=(sav>0?'$'+sav.toLocaleString():'-$'+Math.abs(sav).toLocaleString());
+}
+
+// === LICENSING ===
+function calcLicense(){
+  const price=parseInt(document.getElementById('licensePrice').value);const months=parseInt(document.getElementById('licenseSupportMonths').value)||0;
+  document.getElementById('licensePriceDisplay').textContent='$'+price.toLocaleString();
+  document.getElementById('licenseTotal').textContent=price.toLocaleString();
+  document.getElementById('licenseSupportLine').textContent=months+' months included support & optimization';
+  let svcTotal=0;SERVICES.forEach(s=>{if(state.selectedServices.has(s.id))svcTotal+=s.basePrice;});
+  ADDONS.forEach(a=>{if(state.addons.has(a.id))svcTotal+=a.price;});
+  const mgmt=MGMT_BASE_FEE+state.selectedServices.size*MGMT_PER_SERVICE;
+  const mo=svcTotal+mgmt;const be=mo>0?Math.ceil(price/mo):0;const yr2=Math.max(0,(mo*24)-price);
+  document.getElementById('licBreakevenMo').textContent=be;document.getElementById('licYr2Savings').textContent='$'+yr2.toLocaleString();
+}
+
+// === INTERNAL PANEL ===
+function calcInternal(){
+  const kH=parseFloat(document.getElementById('intKyleSlider').value),bH=parseFloat(document.getElementById('intBryanSlider').value),vH=parseFloat(document.getElementById('intVASlider').value),mk=parseFloat(document.getElementById('markupSlider').value);
+  const kC=kH*250,bC=bH*125,vC=vH*4,totD=kC+bC+vC;
+  document.getElementById('intKyleHrs').textContent=kH;document.getElementById('intBryanHrs').textContent=bH;document.getElementById('intVAHrs').textContent=vH;
+  document.getElementById('intKyleCost').textContent='$'+kC.toLocaleString();document.getElementById('intBryanCost').textContent='$'+bC.toLocaleString();document.getElementById('intVACost').textContent='$'+vC.toLocaleString();
+  document.getElementById('intTotalDelivery').textContent='$'+totD.toLocaleString();
+  document.getElementById('markupDisplay').textContent=mk+'x';document.getElementById('intMarkupBase').textContent='$'+totD.toLocaleString();
+  document.getElementById('intRecSetup').textContent='$'+Math.round(totD*mk).toLocaleString();
+  let setupT=0;SERVICES.forEach(s=>{if(state.selectedServices.has(s.id))setupT+=s.setup;});
+  const sDisc=SETUP_DISCOUNT[state.clientType]||0;
+  let setupF;
+  if(state.offerType==='flagship'){
+    setupF=Math.round(FLAGSHIP_SETUP_BASE*SIZE_MULTI[state.size]*IND_MULTI[document.getElementById('industry').value]*(1-sDisc));
+    if(state.pilotMode)setupF=Math.round(setupF*0.50);
+    if(!state.allowDiscountBelowBaseline&&setupF<FLAGSHIP_SETUP_FLOOR)setupF=FLAGSHIP_SETUP_FLOOR;
+  }else{
+    setupF=Math.round(setupT*SIZE_MULTI[state.size]*(1-sDisc));
   }
-
-  // Selected services list
-  const servicesEl = document.getElementById('quoteServices');
-  if (selectedList.length === 0) {
-    servicesEl.innerHTML = '<div class="empty-state">No services selected</div>';
-  } else {
-    servicesEl.innerHTML = selectedList.map(s =>
-      `<div class="qs-item"><span class="qs-name">${s.name}</span><span class="qs-price">$${s.price}/mo</span></div>`
-    ).join('');
+  document.getElementById('intActualSetup').textContent='$'+setupF.toLocaleString();
+  let svcT=0;SERVICES.forEach(s=>{if(state.selectedServices.has(s.id))svcT+=s.basePrice;});
+  ADDONS.forEach(a=>{if(state.addons.has(a.id))svcT+=a.price;});
+  const sM=SIZE_MULTI[state.size],iM=IND_MULTI[document.getElementById('industry').value],lM=getLeadMultiplier(state.leadVolume),dc=CLIENT_DISCOUNT[state.clientType];
+  const voice=getVoiceOverage();const voiceAdd=state.pricingMode==='margin'?voice.cost:0;
+  let mRev;
+  if(state.offerType==='flagship'){
+    let mBase=FLAGSHIP_MONTHLY_BASE*sM*iM*lM;mBase=mBase-(mBase*dc);mBase+=voiceAdd;
+    if(!state.allowDiscountBelowBaseline&&mBase<FLAGSHIP_MONTHLY_FLOOR)mBase=FLAGSHIP_MONTHLY_FLOOR;
+    mRev=Math.round(mBase);
+  }else{
+    let adj;
+    if(state.pricingMode==='close'){adj=svcT*sM*iM;}else{adj=svcT*sM*iM*lM;}
+    const mgmt=(MGMT_BASE_FEE+state.selectedServices.size*MGMT_PER_SERVICE)*lM;
+    const totBefore=adj+mgmt;const aftD=totBefore-(totBefore*dc);
+    mRev=Math.round(aftD+voiceAdd);
   }
+  const softC=Math.round(FIXED_SOFTWARE+state.leadVolume*(OPENAI_PER_LEAD+TWILIO_PER_LEAD+RETELL_PER_LEAD));
+  const vaM=24,amM=100;const mProf=mRev-softC-vaM-amM;const mPct=mRev>0?Math.round((mProf/mRev)*100):0;
+  document.getElementById('intMonthlyRev').textContent='$'+mRev.toLocaleString();document.getElementById('intMonthlySoftware').textContent='$'+softC.toLocaleString();
+  document.getElementById('intMonthlyVA').textContent='$'+vaM;document.getElementById('intMonthlyAmerican').textContent='$'+amM;
+  document.getElementById('intMonthlyProfit').textContent='$'+mProf.toLocaleString();
+  document.getElementById('intLeadCount').textContent=state.leadVolume;
+  document.getElementById('intOpenAICost').textContent='$'+Math.round(state.leadVolume*OPENAI_PER_LEAD);
+  document.getElementById('intTwilioCost').textContent='$'+Math.round(state.leadVolume*TWILIO_PER_LEAD);
+  document.getElementById('intRetellCost').textContent='$'+Math.round(state.leadVolume*RETELL_PER_LEAD);
+  document.getElementById('intTotalSoftware').textContent='$'+softC.toLocaleString();
+  const fill=document.getElementById('marginFill');const cm=Math.max(0,Math.min(100,mPct));
+  fill.style.width=cm+'%';fill.style.background=mPct>=60?'var(--green)':mPct>=40?'var(--orange)':'var(--red)';
+  document.getElementById('marginPercent').textContent=mPct+'% margin';
+  document.getElementById('marginPercent').style.color=mPct>=60?'var(--green)':mPct>=40?'var(--orange)':'var(--red)';
 }
 
-// ============================================================
-// INTERACTIONS
-// ============================================================
+// === QUOTE GENERATION ===
+function generateQuote(){
+  const cn=document.getElementById('clientName').value||'Client';const ind=document.getElementById('industry').value;
+  const iM=IND_MULTI[ind],sM=SIZE_MULTI[state.size],dc=CLIENT_DISCOUNT[state.clientType],prM=PRICING_MULTI[state.pricingModel];
+  const leadM=getLeadMultiplier(state.leadVolume);const setupDisc=SETUP_DISCOUNT[state.clientType]||0;
+  const pL={monthly:'Monthly',quarterly:'Quarterly',annual:'Annual'}[state.pricingModel];
+  const today=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  const voice=getVoiceOverage();
+  const includedMin=parseInt(document.getElementById('voiceIncluded').value)||300;
+  let voiceLine=`  Voice usage includes up to ${includedMin} AI voice minutes/month`;
+  if(voice.cost>0)voiceLine+=`; estimated overage: $${voice.cost.toFixed(2)}/mo (if applicable)`;
+  let text;
 
-function selectClientType(el) {
-  document.querySelectorAll('.client-type').forEach(e => e.classList.remove('active'));
-  el.classList.add('active');
-  state.clientType = el.dataset.type;
-  calculate();
-}
+  if(state.offerType==='flagship'){
+    // Flagship quote — no per-service itemization
+    let mBase=FLAGSHIP_MONTHLY_BASE*sM*iM*leadM;
+    let sBase=FLAGSHIP_SETUP_BASE*sM*iM;
+    let dA=mBase*dc;mBase=mBase-dA;sBase=sBase*(1-setupDisc);
+    let voiceAdd=state.pricingMode==='margin'?voice.cost:0;
+    let mT=mBase+voiceAdd;let suF=Math.round(sBase);
+    if(state.pilotMode)suF=Math.round(suF*0.50);
+    if(!state.allowDiscountBelowBaseline){if(mT<FLAGSHIP_MONTHLY_FLOOR)mT=FLAGSHIP_MONTHLY_FLOOR;if(suF<FLAGSHIP_SETUP_FLOOR)suF=FLAGSHIP_SETUP_FLOOR;}
+    let pT=Math.round(mT*prM);let mE=Math.round(mT);
+    let pilotNote=state.pilotMode?`\n  ** PILOT PRICING — 50% setup reduction applied **\n  ** First 30 days: $${Math.round(mE*0.80).toLocaleString()}/mo (20% pilot discount) **\n`:'';
+    text=`
+\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550
+  FLAGSHIP OFFER: INSTANT LEAD-TO-JOB ENGINE
+\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550
 
-function selectSize(el) {
-  document.querySelectorAll('.size-option').forEach(e => e.classList.remove('active'));
-  el.classList.add('active');
-  state.size = el.dataset.size;
-  calculate();
-}
-
-function setPricingModel(model, btn) {
-  document.querySelectorAll('.pricing-toggle button').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  state.pricingModel = model;
-  calculate();
-}
-
-function toggleService(id) {
-  if (state.selectedServices.has(id)) {
-    state.selectedServices.delete(id);
-  } else {
-    state.selectedServices.add(id);
-  }
-  renderServices();
-  calculate();
-}
-
-function toggleAddon(id) {
-  if (state.addons.has(id)) {
-    state.addons.delete(id);
-  } else {
-    state.addons.add(id);
-  }
-  renderAddons();
-  calculate();
-}
-
-document.getElementById('industry').addEventListener('change', calculate);
-
-// ============================================================
-// QUOTE GENERATION
-// ============================================================
-
-function generateQuote() {
-  const clientName = document.getElementById('clientName').value || 'Client';
-  const industry = document.getElementById('industry').value;
-  const indMulti = INDUSTRY_MULTIPLIER[industry];
-  const sizeMulti = SIZE_MULTIPLIER[state.size];
-  const discount = CLIENT_DISCOUNT[state.clientType];
-  const pricingMulti = PRICING_MULTI[state.pricingModel];
-  const periodLabel = { monthly: 'Monthly', quarterly: 'Quarterly', annual: 'Annual' }[state.pricingModel];
-
-  let serviceTotal = 0;
-  let setupTotal = 0;
-  const lines = [];
-  SERVICES.forEach(s => {
-    if (state.selectedServices.has(s.id)) {
-      serviceTotal += s.basePrice;
-      setupTotal += s.setup;
-      lines.push(`  - ${s.name}: $${s.basePrice}/mo`);
-    }
-  });
-  ADDONS.forEach(a => {
-    if (state.addons.has(a.id)) {
-      serviceTotal += a.price;
-      lines.push(`  - ${a.name} (Add-on): $${a.price}/mo`);
-    }
-  });
-
-  let adjusted = serviceTotal * sizeMulti * indMulti;
-  let discountAmt = adjusted * discount;
-  let afterDiscount = adjusted - discountAmt;
-  let periodTotal = Math.round(afterDiscount * pricingMulti);
-  let setupFinal = Math.round(setupTotal * sizeMulti * (state.clientType === 'current' ? 0.75 : 1));
-  let monthlyEquiv = Math.round(afterDiscount);
-
-  const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-
-  let text = `
-═══════════════════════════════════════════
-  AI SALES INFRASTRUCTURE — PRICING QUOTE
-═══════════════════════════════════════════
-
-Prepared for: ${clientName}
+Prepared for: ${cn}
 Date: ${today}
-Industry: ${INDUSTRY_LABELS[industry]}
+Industry: ${IND_LABELS[ind]}
 Client Status: ${CLIENT_LABELS[state.clientType]}
 Business Size: ${SIZE_LABELS[state.size]}
+Monthly Lead Volume: ${state.leadVolume}
 
-───────────────────────────────────────────
-SELECTED SERVICES
-───────────────────────────────────────────
-${lines.join('\n')}
+\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+PRICING
+\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+  Setup: $${suF.toLocaleString()} (baseline $${FLAGSHIP_SETUP_BASE.toLocaleString()}, adjusted for size/complexity)
+  ${pL}: $${pT.toLocaleString()} ${PRICING_LABELS[state.pricingModel]} (baseline $${FLAGSHIP_MONTHLY_BASE.toLocaleString()}/mo, adjusted for lead volume)
+${dc>0?`  ${CLIENT_LABELS[state.clientType]} Discount Applied: -${(dc*100)}% monthly, -${(setupDisc*100)}% setup\n`:''}${pilotNote}
+  \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+  ${pL} Investment:   $${pT.toLocaleString()} ${PRICING_LABELS[state.pricingModel]}
+  One-Time Setup Fee:     $${suF.toLocaleString()}
+  \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
 
-───────────────────────────────────────────
-PRICING BREAKDOWN
-───────────────────────────────────────────
-  Base Monthly Total:     $${serviceTotal.toLocaleString()}/mo
-  Size Multiplier:        ${sizeMulti}x
-  Industry Multiplier:    ${indMulti}x
-  Adjusted Monthly:       $${Math.round(adjusted).toLocaleString()}/mo
-${discount > 0 ? `  ${CLIENT_LABELS[state.clientType]} Discount: -${(discount*100)}% (-$${Math.round(discountAmt).toLocaleString()}/mo)\n` : ''}
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ${periodLabel} Investment:   $${periodTotal.toLocaleString()} ${PRICING_LABELS[state.pricingModel]}
-  One-Time Setup Fee:     $${setupFinal.toLocaleString()}
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${voiceLine}
 
-  Annual Value:           $${(monthlyEquiv * 12 + setupFinal).toLocaleString()}
+  Annual Value:           $${(mE*12+suF).toLocaleString()}
 
-───────────────────────────────────────────
+\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
 WHAT'S INCLUDED
-───────────────────────────────────────────
-  ✓ Full AI Sales Infrastructure Setup
-  ✓ OnePrompt Central Control System
-  ✓ AI Training on Your Business Data
-  ✓ Integration with Existing Tools
-  ✓ 24/7 Automated Lead Response
-  ✓ Ongoing System Optimization
+\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+  \u2713 Instant AI Lead Response (Voice, SMS, Chat)
+  \u2713 Automated Follow-Up Engine
+  \u2713 AI-Powered Appointment Booking
+  \u2713 CRM Pipeline & Lead Management
+  \u2713 Review Request Automation
+  \u2713 Analytics & Conversion Tracking
+  \u2713 Knowledge Base AI Training
+  \u2713 OnePrompt Central Control System
+  \u2713 Monthly Management & Strategy Support
 
-───────────────────────────────────────────
+\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
 NEXT STEPS
-───────────────────────────────────────────
+\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
   1. Approve this quote
   2. Complete onboarding form
   3. System installation (5-10 business days)
@@ -1091,42 +1619,99 @@ NEXT STEPS
   "OnePrompt is the brain that runs your
    entire AI sales system."
 
-═══════════════════════════════════════════
-`.trim();
+\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550`.trim();
+  }else{
+    // Custom quote — keep itemized
+    let sT=0,adT=0,suT=0;const lines=[];
+    SERVICES.forEach(s=>{if(state.selectedServices.has(s.id)){sT+=s.basePrice;suT+=s.setup;lines.push(`  - ${s.name}: $${s.basePrice}/mo`);}});
+    ADDONS.forEach(a=>{if(state.addons.has(a.id)){adT+=a.price;lines.push(`  - ${a.name} (Add-on): $${a.price}/mo`);}});
+    const coreCount=state.selectedServices.size;
+    const mgmtBase=MGMT_BASE_FEE+coreCount*MGMT_PER_SERVICE;
+    let adjSvc,adjMgmt;
+    if(state.pricingMode==='close'){adjSvc=(sT+adT)*sM*iM;adjMgmt=mgmtBase*leadM;}
+    else{adjSvc=(sT+adT)*sM*iM*leadM;adjMgmt=mgmtBase*leadM;}
+    let totalBD=adjSvc+adjMgmt;let dA=totalBD*dc;let aftD=totalBD-dA;
+    let voiceAdd=state.pricingMode==='margin'?voice.cost:0;
+    let mT=aftD+voiceAdd;let pT=Math.round(mT*prM);
+    let suF=Math.round(suT*sM*(1-setupDisc));let mE=Math.round(mT);
+    text=`
+\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550
+  AI SALES INFRASTRUCTURE \u2014 PRICING QUOTE
+\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550
 
-  document.getElementById('quoteText').textContent = text;
-  const modal = document.getElementById('quoteModal');
-  modal.style.display = 'flex';
-}
+Prepared for: ${cn}
+Date: ${today}
+Industry: ${IND_LABELS[ind]}
+Client Status: ${CLIENT_LABELS[state.clientType]}
+Business Size: ${SIZE_LABELS[state.size]}
+Monthly Lead Volume: ${state.leadVolume}
 
-function closeModal() {
-  document.getElementById('quoteModal').style.display = 'none';
-}
+\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+SELECTED SERVICES
+\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+${lines.join('\n')}
 
-function copyQuote() {
-  const text = document.getElementById('quoteText').textContent;
-  if (!text || text.length < 10) {
-    generateQuote();
+\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+PRICING BREAKDOWN
+\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+  Base Services Total:    $${(sT+adT).toLocaleString()}/mo
+  Management Fee:         $${mgmtBase.toLocaleString()}/mo
+    (Base $${MGMT_BASE_FEE} + $${MGMT_PER_SERVICE} x ${coreCount} core services)
+  Size Multiplier:        ${sM}x
+  Industry Multiplier:    ${iM}x
+  Lead Volume Multiplier: ${leadM.toFixed(2)}x
+${dc>0?`  ${CLIENT_LABELS[state.clientType]} Discount: -${(dc*100)}% (-$${Math.round(dA).toLocaleString()}/mo)\n`:''}
+  \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+  ${pL} Investment:   $${pT.toLocaleString()} ${PRICING_LABELS[state.pricingModel]}
+  One-Time Setup Fee:     $${suF.toLocaleString()}
+  \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+
+${voiceLine}
+
+  Annual Value:           $${(mE*12+suF).toLocaleString()}
+
+\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+WHAT'S INCLUDED
+\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+  \u2713 Full AI Sales Infrastructure Setup
+  \u2713 OnePrompt Central Control System
+  \u2713 AI Training on Your Business Data
+  \u2713 Integration with Existing Tools
+  \u2713 24/7 Automated Lead Response
+  \u2713 Ongoing System Optimization
+  \u2713 Monthly Management & Strategy Support
+
+\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+NEXT STEPS
+\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+  1. Approve this quote
+  2. Complete onboarding form
+  3. System installation (5-10 business days)
+  4. Go live with AI Sales Infrastructure
+
+  "OnePrompt is the brain that runs your
+   entire AI sales system."
+
+\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550`.trim();
   }
-  navigator.clipboard.writeText(document.getElementById('quoteText').textContent).then(() => {
-    const btn = document.querySelector('.btn-copy');
-    btn.textContent = 'Copied!';
-    setTimeout(() => { btn.textContent = 'Copy Quote as Text'; }, 2000);
+  document.getElementById('quoteText').textContent=text;document.getElementById('quoteModal').classList.add('show');
+}
+
+function closeModal(){document.getElementById('quoteModal').classList.remove('show');}
+function copyQuote(){
+  const t=document.getElementById('quoteText').textContent;if(!t||t.length<10)generateQuote();
+  navigator.clipboard.writeText(document.getElementById('quoteText').textContent).then(()=>{
+    const b=document.querySelector('.btn-secondary');if(b){b.textContent='Copied!';setTimeout(()=>{b.textContent='Copy Quote as Text';},2000);}
   });
 }
+document.getElementById('quoteModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 
-// Close modal on outside click
-document.getElementById('quoteModal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
+// === SALES QUESTIONS ===
+function toggleQ(el){el.classList.toggle('asked');}
+function resetQuestions(){document.querySelectorAll('.q-item').forEach(q=>q.classList.remove('asked'));}
 
-// ============================================================
-// INIT
-// ============================================================
-renderServices();
-renderAddons();
-calculate();
+// === INIT ===
+renderServices();renderAddons();calculate();
 </script>
-
 </body>
 </html>
